@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+
+  --color-brand-yellow: #FEF9C3;
+  --color-brand-blue: #E0F2FE;
+  --color-brand-mint: #ECFDF5;
+  --color-brand-lilac: #F5F3FF;
+  --color-brand-primary: #3B82F6;
+  --color-brand-accent: #F59E0B;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-slate-800 bg-white;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+.school-pattern {
+  background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+.notebook-line {
+  background-image: linear-gradient(transparent 31px, #e2e8f0 31px);
+  background-size: 100% 32px;
+}
