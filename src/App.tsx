@@ -26,8 +26,13 @@ import {
 
 const Button = ({ children, className = "", primary = true, onClick }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void }) => (
   <motion.button
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
+    whileHover={{ 
+      scale: 1.05, 
+      y: -2,
+      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" 
+    }}
+    whileTap={{ scale: 0.98, y: 0 }}
+    transition={{ type: "spring", stiffness: 400, damping: 10 }}
     onClick={onClick}
     className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
       primary 
@@ -50,22 +55,28 @@ const SectionTitle = ({ children, subtitle, light = false }: { children: React.R
 
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string, key?: React.Key }) => (
-  <div className={`p-8 rounded-3xl bg-white shadow-sm border border-slate-100 hover:shadow-md transition-shadow ${className}`}>
+  <motion.div 
+    whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    className={`p-8 rounded-3xl bg-white shadow-sm border border-slate-100 transition-colors ${className}`}
+  >
     {children}
-  </div>
+  </motion.div>
 );
 
 const FAQItem = ({ question, answer }: { question: string, answer: string, key?: React.Key }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className="border-b border-slate-200 last:border-0">
-      <button 
+      <motion.button 
+        whileHover={{ x: 5 }}
+        transition={{ type: "spring", stiffness: 300 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left focus:outline-none"
+        className="w-full py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
       >
         <span className="font-display font-semibold text-lg text-slate-800">{question}</span>
         <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-      </button>
+      </motion.button>
       {isOpen && (
         <motion.div 
           initial={{ height: 0, opacity: 0 }}
@@ -82,43 +93,91 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
 const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: string }) => (
   <section className="py-20 bg-slate-50 overflow-hidden border-y border-slate-100">
     <div className="container mx-auto px-4 mb-10 text-center">
-       {title && <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</h2>}
-       {subtitle && <p className="text-slate-500">{subtitle}</p>}
+       {title && <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</motion.h2>}
+       {subtitle && <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-slate-500">{subtitle}</motion.p>}
     </div>
     
-    <div className="relative flex overflow-x-hidden">
-      <motion.div 
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ 
-          ease: "linear", 
-          duration: 25, 
-          repeat: Infinity 
-        }}
-        className="flex whitespace-nowrap gap-6"
-      >
-        {[...Array(2)].map((_, listIdx) => (
-          <div key={listIdx} className="flex gap-10">
-            {[
-              "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
-              "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
-              "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
-              "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png"
-            ].map((imgSrc, imgIdx) => (
-              <div 
-                key={`${listIdx}-${imgIdx}`} 
-                className="w-[300px] md:w-[400px] shrink-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white transform hover:scale-105 transition-all duration-300"
-              >
-                <img 
-                  src={imgSrc} 
-                  alt={`Exemplo de Atividade ${imgIdx + 1}`} 
-                  className="w-full h-auto object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </motion.div>
+    <div className="space-y-10">
+      {/* Row 1: Left to Right */}
+      <div className="relative flex overflow-x-hidden">
+        <motion.div 
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ 
+            ease: "linear", 
+            duration: 30, 
+            repeat: Infinity 
+          }}
+          className="flex whitespace-nowrap gap-6"
+        >
+          {[...Array(2)].map((_, listIdx) => (
+            <div key={listIdx} className="flex gap-10">
+              {[
+                "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
+                "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
+                "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
+                "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png"
+              ].map((imgSrc, imgIdx) => (
+                <div 
+                  key={`${listIdx}-${imgIdx}`} 
+                  className="w-[280px] md:w-[350px] shrink-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white transform hover:scale-105 transition-all duration-300"
+                >
+                  <img 
+                    src={imgSrc} 
+                    alt={`Exemplo de Atividade ${imgIdx + 1}`} 
+                    className="w-full h-auto object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Row 2: Right to Left */}
+      <div className="relative flex overflow-x-hidden">
+        <motion.div 
+          animate={{ x: ["-50%", "0%"] }}
+          transition={{ 
+            ease: "linear", 
+            duration: 35, 
+            repeat: Infinity 
+          }}
+          className="flex whitespace-nowrap gap-6"
+        >
+          {[...Array(2)].map((_, listIdx) => (
+            <div key={listIdx} className="flex gap-10">
+              {[
+                "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png",
+                "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
+                "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
+                "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png"
+              ].map((imgSrc, imgIdx) => (
+                <div 
+                  key={`${listIdx}-${imgIdx}`} 
+                  className="w-[280px] md:w-[350px] shrink-0 rounded-2xl overflow-hidden shadow-xl border-8 border-white transform hover:scale-105 transition-all duration-300"
+                >
+                  <img 
+                    src={imgSrc} 
+                    alt={`Exemplo de Atividade ${imgIdx + 1}`} 
+                    className="w-full h-auto object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   </section>
 );
@@ -238,16 +297,29 @@ export default function App() {
       <ActivityCarousel title="Pronto para imprimir e usar" subtitle="Veja a qualidade pedagógica de cada página do kit" />
 
       {/* 2. SEÇÃO DE IDENTIFICAÇÃO DA DOR */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle 
-            subtitle="Toda professora do Ensino Fundamental 1 conhece esse ciclo desgastante."
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            Você já passou por isso em sala?
-          </SectionTitle>
+            <SectionTitle 
+              subtitle="Toda professora do Ensino Fundamental 1 conhece esse ciclo desgastante."
+            >
+              Você já passou por isso em sala?
+            </SectionTitle>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="space-y-6"
+            >
               <p className="text-lg text-slate-600 leading-relaxed">
                 Você prepara a atividade, começa a orientar a turma e, poucos minutos depois, um aluno levanta a mão e diz: <span className="italic font-medium text-brand-primary">“Professora, já terminei.”</span>
               </p>
@@ -285,9 +357,15 @@ export default function App() {
                   Foi pensando exatamente nesse momento que nasceu o “Acabei, Professora!”.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-brand-blue/30 rounded-3xl p-8 relative overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-brand-blue/30 rounded-3xl p-8 relative overflow-hidden"
+            >
                <div className="absolute top-0 right-0 p-4 opacity-10">
                   <Heart className="w-32 h-32 text-blue-900" />
                </div>
@@ -304,25 +382,38 @@ export default function App() {
                      <span className="text-slate-500 text-sm">Chega de improviso e cansaço mental.</span>
                   </div>
                </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* 3. SEÇÃO DA SOLUÇÃO */}
-      <section className="py-24 bg-brand-blue/10">
+      <section className="py-24 bg-brand-blue/10 overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle 
-            subtitle="Uma ferramenta prática e educativa para deixar sua aula fluir com tranquilidade."
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            Uma pasta pronta para salvar sua rotina.
-          </SectionTitle>
+            <SectionTitle 
+              subtitle="Uma ferramenta prática e educativa para deixar sua aula fluir com tranquilidade."
+            >
+              Uma pasta pronta para salvar sua rotina.
+            </SectionTitle>
+          </motion.div>
 
-          <div className="max-w-4xl mx-auto text-center mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="max-w-4xl mx-auto text-center mb-16"
+          >
             <p className="text-xl text-slate-600 leading-relaxed">
               O <strong>“Acabei, Professora!”</strong> é um kit digital com atividades extras, rápidas e educativas para entregar aos alunos que terminam antes. Assim, eles continuam aprendendo de forma independente, enquanto você consegue seguir com a aula sem perder o controle da turma.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -335,22 +426,37 @@ export default function App() {
               { icon: Heart, title: "Organização", desc: "Mantém a sala calma e silenciosa." },
               { icon: FileBadge, title: "Versatilidade", desc: "Pode ser usado todos os dias da semana." }
             ].map((benefit, i) => (
-              <Card key={i} className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-brand-primary mb-4">
-                  <benefit.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{benefit.title}</h3>
-                <p className="text-sm text-slate-500">{benefit.desc}</p>
-              </Card>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="flex flex-col items-center text-center h-full">
+                  <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-brand-primary mb-4">
+                    <benefit.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{benefit.title}</h3>
+                  <p className="text-sm text-slate-500">{benefit.desc}</p>
+                </Card>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* 4. SEÇÃO “O QUE VEM NO KIT” */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -399,8 +505,12 @@ export default function App() {
             ].map((item, i) => (
               <motion.div 
                 key={i} 
-                whileHover={{ y: -5 }}
-                className="group p-8 rounded-[40px] border border-slate-100 bg-white shadow-sm hover:shadow-xl transition-all"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+                className="group p-8 rounded-[40px] border border-slate-100 bg-white shadow-sm transition-all flex flex-col items-center text-center"
               >
                 <div className={`w-16 h-16 rounded-3xl mb-6 flex items-center justify-center ${item.color} group-hover:scale-110 transition-transform`}>
                   {item.icon}
@@ -423,13 +533,27 @@ export default function App() {
       <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
         <div className="absolute inset-0 opacity-10 school-pattern pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
-          <SectionTitle light subtitle="A rotina que você sempre quis, agora em um kit pronto para usar.">
-            Antes, era improviso. Agora, é rotina pronta.
-          </SectionTitle>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <SectionTitle light subtitle="A rotina que você sempre quis, agora em um kit pronto para usar.">
+              Antes, era improviso. Agora, é rotina pronta.
+            </SectionTitle>
+          </motion.div>
 
           <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
             {/* Antes */}
-            <div className="flex-1 bg-slate-800/50 backdrop-blur rounded-3xl p-8 border border-slate-700">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+              className="flex-1 bg-slate-800/50 backdrop-blur rounded-3xl p-8 border border-slate-700 transition-all"
+            >
                <h3 className="text-2xl font-bold mb-6 text-red-400 flex items-center gap-2">
                  <span className="w-8 h-8 rounded-full bg-red-400/20 flex items-center justify-center text-sm">✕</span>
                  Cenário Atual (Sem o Kit)
@@ -448,16 +572,29 @@ export default function App() {
                    </li>
                  ))}
                </ul>
-            </div>
+            </motion.div>
 
             <div className="flex items-center justify-center">
-               <div className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-lg transform md:rotate-0 rotate-90">
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0 }}
+                 whileInView={{ opacity: 1, scale: 1 }}
+                 viewport={{ once: true }}
+                 transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
+                 className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-lg transform md:rotate-0 rotate-90"
+               >
                   <ArrowRight className="text-white w-6 h-6" />
-               </div>
+               </motion.div>
             </div>
 
             {/* Depois */}
-            <div className="flex-1 bg-brand-primary/10 backdrop-blur rounded-3xl p-8 border border-brand-primary/30">
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+              className="flex-1 bg-brand-primary/10 backdrop-blur rounded-3xl p-8 border border-brand-primary/30 transition-all"
+            >
                <h3 className="text-2xl font-bold mb-6 text-brand-primary flex items-center gap-2">
                  <span className="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-sm">✓</span>
                  Com o Kit Instalado
@@ -476,23 +613,35 @@ export default function App() {
                    </li>
                  ))}
                </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* 6. SEÇÃO “PARA QUEM É” */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-            <div className="md:w-1/2">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="md:w-1/2"
+            >
                <img 
                 src="https://images.unsplash.com/photo-1577891729319-f4874c739880?q=80&w=800&auto=format&fit=crop" 
                 alt="Professora entusiasmada"
                 className="rounded-[40px] shadow-2xl"
                />
-            </div>
-            <div className="md:w-1/2">
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="md:w-1/2"
+            >
                <h2 className="text-3xl font-bold mb-8 text-slate-900 leading-tight">
                  Esse kit é ideal para você se…
                </h2>
@@ -506,25 +655,40 @@ export default function App() {
                    "Você gosta de materiais bonitos, lúdicos e fáceis de usar.",
                    "Você quer ter uma pasta pronta para salvar seu dia."
                  ].map((item, i) => (
-                   <div key={i} className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint">
+                   <motion.div 
+                    key={i} 
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ x: 5, backgroundColor: "rgba(187, 247, 208, 0.5)" }}
+                    className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint transition-colors cursor-default"
+                   >
                       <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0" />
                       <span className="text-slate-700 font-medium">{item}</span>
-                   </div>
+                   </motion.div>
                  ))}
                </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* 7. SEÇÃO “COMO USAR” */}
-      <section className="py-24 bg-brand-yellow/10">
+      <section className="py-24 bg-brand-yellow/10 overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle subtitle="Implementação rápida que não exige esforço adicional.">
-            Como usar em sala de aula?
-          </SectionTitle>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <SectionTitle subtitle="Implementação rápida que não exige esforço adicional.">
+              Como usar em sala de aula?
+            </SectionTitle>
+          </motion.div>
 
-          <div className="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto items-start">
             {[
               { step: 1, text: "Imprima as atividades que desejar." },
               { step: 2, text: "Organize em uma pasta, caixa ou no cantinho da sala." },
@@ -532,46 +696,66 @@ export default function App() {
               { step: 4, text: "O aluno realiza a atividade de forma independente." },
               { step: 5, text: "Você mantém a turma focada e a aula fluindo." }
             ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center text-center">
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                whileHover={{ y: -5 }}
+                className="flex flex-col items-center text-center relative group"
+              >
                  <div className="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mb-6 border-4 border-brand-yellow">
                     <span className="text-2xl font-bold text-slate-800">{s.step}</span>
                  </div>
                  <p className="text-slate-600 font-medium px-2">{s.text}</p>
-                 {i < 4 && (
-                   <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 text-slate-200">
-                      <ArrowRight className="w-8 h-8" />
-                   </div>
-                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <div className="mt-16 text-center">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1 }}
+            className="mt-16 text-center"
+          >
              <p className="text-2xl font-display font-medium text-brand-primary">
                 Simples, prático e pronto para transformar sua rotina.
              </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 8. SEÇÃO DE BÔNUS */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle subtitle="Presentes exclusivos para quem garantir o kit hoje.">
-            Comprando hoje, você também recebe bônus especiais.
-          </SectionTitle>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <SectionTitle subtitle="Presentes exclusivos para quem garantir o kit hoje.">
+              Comprando hoje, você também recebe bônus especiais.
+            </SectionTitle>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { title: "Cartaz: Terminei, e agora?", desc: "Para colocar na sala e orientar os alunos visualmente.", icon: <Layout /> },
               { title: "Controle de Missões", desc: "Folha para acompanhar o progresso de cada aluno.", icon: <ClipboardCheck /> },
               { title: "Capas e Etiquetas", desc: "Personalize sua pasta e materiais do kit.", icon: <Sparkles /> },
-              { title: "Versão Econômica", desc: "Atividades em P&B para economizar tinta.", icon: <Printer /> }
+              { title: "Versada Econômica", desc: "Atividades em P&B para economizar tinta.", icon: <Printer /> }
             ].map((bonus, i) => (
               <motion.div 
                 key={i}
-                whileHover={{ scale: 1.02 }}
-                className="p-6 rounded-3xl bg-brand-lilac/30 border-2 border-brand-lilac flex flex-col items-center text-center shadow-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="p-6 rounded-3xl bg-brand-lilac/30 border-2 border-brand-lilac flex flex-col items-center text-center shadow-sm transition-all"
               >
                 <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-purple-600 mb-6">
                    {bonus.icon}
@@ -627,7 +811,8 @@ export default function App() {
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    className="p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10"
+                    whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }}
+                    className="p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all"
                   >
                     <div className="absolute top-0 right-10 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm shadow-md">
                        OFERTA LIMITADA
@@ -639,7 +824,7 @@ export default function App() {
                           <span className="text-slate-400 line-through text-lg">De R$ 47,00</span>
                           <div className="flex items-baseline gap-1">
                              <span className="text-lg font-bold text-slate-900">R$</span>
-                             <span className="text-6xl font-black text-brand-primary">27,00</span>
+                             <span className="text-6xl font-black text-brand-primary">10,00</span>
                           </div>
                           <span className="text-slate-500 font-medium">Acesso Vitalício em PDF</span>
                        </div>
@@ -677,16 +862,23 @@ export default function App() {
                        </div>
                     </div>
                   </motion.div>
-               </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* 11. SEÇÃO DE GARANTIA */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+            className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
+          >
              <div className="flex-shrink-0">
                 <div className="relative w-40 h-40 flex items-center justify-center">
                    <ShieldCheck className="w-full h-full text-emerald-500/20 absolute" />
@@ -705,16 +897,22 @@ export default function App() {
                   Você pode acessar, baixar, avaliar e decidir com total tranquilidade.
                 </p>
              </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 12. SEÇÃO DE DEPOIMENTOS */}
-      <section className="py-24 bg-brand-mint/20">
+      <section className="py-24 bg-brand-mint/20 overflow-hidden">
         <div className="container mx-auto px-4">
-          <SectionTitle subtitle="O que outras educadoras estão dizendo.">
-            Comunidade de Professoras
-          </SectionTitle>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <SectionTitle subtitle="O que outras educadoras estão dizendo.">
+              Comunidade de Professoras
+            </SectionTitle>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
@@ -722,36 +920,49 @@ export default function App() {
               { name: "Luciana M.", role: "Pedagoga", text: "Me ajudou muito nos momentos em que alguns alunos terminavam antes. O material é lindo e flui super bem. Ficou tudo mais organizado na escola." },
               { name: "Patrícia Souza", role: "Alfabetizadora", text: "Material bonito, prático e muito fácil de imprimir. Meus pequenos adoraram os desafios e pararam de correr pela sala. Recomendo muito!" }
             ].map((d, i) => (
-              <Card key={i} className="relative pt-12 italic text-slate-700 bg-white/80 backdrop-blur">
-                 <div className="absolute top-8 left-8 text-6xl text-brand-mint select-none pointer-events-none">“</div>
-                 <p className="mb-6 relative z-10 leading-relaxed">
-                   {d.text}
-                 </p>
-                 <div className="flex items-center gap-4 not-italic">
-                    <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-slate-400">
-                       {d.name.charAt(0)}
-                    </div>
-                    <div>
-                       <h5 className="font-bold text-slate-900 text-sm">{d.name}</h5>
-                       <span className="text-xs text-slate-500 font-medium">{d.role}</span>
-                    </div>
-                 </div>
-                 <div className="mt-4 flex gap-1">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
-                 </div>
-              </Card>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <Card className="relative pt-12 italic text-slate-700 bg-white/80 backdrop-blur h-full">
+                  <div className="absolute top-8 left-8 text-6xl text-brand-mint select-none pointer-events-none">“</div>
+                  <p className="mb-6 relative z-10 leading-relaxed">
+                    {d.text}
+                  </p>
+                  <div className="flex items-center gap-4 not-italic">
+                      <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-slate-400">
+                        {d.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h5 className="font-bold text-slate-900 text-sm">{d.name}</h5>
+                        <span className="text-xs text-slate-500 font-medium">{d.role}</span>
+                      </div>
+                  </div>
+                  <div className="mt-4 flex gap-1">
+                      {[...Array(5)].map((_, j) => <Star key={j} className="w-3 h-3 fill-yellow-400 text-yellow-400" />)}
+                  </div>
+                </Card>
+              </motion.div>
             ))}
           </div>
           <div className="mt-12 text-center text-slate-500 text-sm">
-             Área destinada a depoimentos de clientes reais. Mostre os resultados que sua solução gera!
+             Área destinada a depoimentos de clientes reais.
           </div>
         </div>
       </section>
 
       {/* 13. SEÇÃO DE FAQ */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
             <SectionTitle>Dúvidas frequentes</SectionTitle>
             <div className="mt-12">
               {[
@@ -765,27 +976,33 @@ export default function App() {
                 <FAQItem key={i} question={faq.q} answer={faq.a} />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* 14. SEÇÃO FINAL DE CTA */}
-      <section className="py-32 bg-brand-yellow relative text-center">
+      <section className="py-32 bg-brand-yellow overflow-hidden relative text-center">
         <div className="container mx-auto px-4 relative z-10">
-           <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 max-w-4xl mx-auto leading-tight">
-             Na próxima vez que um aluno disser “professora, já terminei”, você não vai precisar improvisar.
-           </h2>
-           <p className="text-xl text-slate-700 mb-12 max-w-2xl mx-auto">
-             Tenha em mãos uma solução profissional para manter seus alunos aprendendo e sua sala em total harmonia.
-           </p>
-           <Button onClick={scrollToOffer} className="shadow-2xl">
-              QUERO BAIXAR O KIT AGORA
-           </Button>
-           <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-700 uppercase tracking-widest">
-              <span className="flex items-center gap-1"><Download className="w-4 h-4" /> Download Imediato</span>
-              <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para Imprimir</span>
-              <span className="flex items-center gap-1"><Heart className="w-4 h-4" /> Amado por +1000 Professoras</span>
-           </div>
+           <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+           >
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 max-w-4xl mx-auto leading-tight">
+                Na próxima vez que um aluno disser “professora, já terminei”, você não vai precisar improvisar.
+              </h2>
+              <p className="text-xl text-slate-700 mb-12 max-w-2xl mx-auto">
+                Tenha em mãos uma solução profissional para manter seus alunos aprendendo e sua sala em total harmonia.
+              </p>
+              <Button onClick={scrollToOffer} className="shadow-2xl">
+                  QUERO BAIXAR O KIT AGORA
+              </Button>
+              <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-700 uppercase tracking-widest">
+                  <span className="flex items-center gap-1"><Download className="w-4 h-4" /> Download Imediato</span>
+                  <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para Imprimir</span>
+                  <span className="flex items-center gap-1"><Heart className="w-4 h-4" /> Amado por +1000 Professoras</span>
+              </div>
+           </motion.div>
         </div>
       </section>
 
