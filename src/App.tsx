@@ -122,8 +122,13 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
             <div key={listIdx} className="flex gap-10">
               {[
                 "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
+                "https://i.ibb.co/2118g1J7/TABUADAS-INFANTIS-PARA-FAZER.png",
+                "https://i.ibb.co/QFtgvKdB/TABUADAS-INFANTIS-PARA-FAZER-1.png",
+                "https://i.ibb.co/HfGxMdxf/TABUADAS-INFANTIS-PARA-FAZER-2.png",
                 "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
                 "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
+                "https://i.ibb.co/MD1czcdj/Chat-GPT-Image-3-de-mai-de-2026-17-30-44.png",
+                "https://i.ibb.co/BH3KSb8F/diferen-as-de-imagens.png",
                 "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png"
               ].map((imgSrc, imgIdx) => (
                 <div 
@@ -157,8 +162,13 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
           {[...Array(2)].map((_, listIdx) => (
             <div key={listIdx} className="flex gap-10">
               {[
+                "https://i.ibb.co/BH3KSb8F/diferen-as-de-imagens.png",
                 "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png",
                 "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
+                "https://i.ibb.co/MD1czcdj/Chat-GPT-Image-3-de-mai-de-2026-17-30-44.png",
+                "https://i.ibb.co/HfGxMdxf/TABUADAS-INFANTIS-PARA-FAZER-2.png",
+                "https://i.ibb.co/QFtgvKdB/TABUADAS-INFANTIS-PARA-FAZER-1.png",
+                "https://i.ibb.co/2118g1J7/TABUADAS-INFANTIS-PARA-FAZER.png",
                 "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
                 "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png"
               ].map((imgSrc, imgIdx) => (
@@ -239,47 +249,67 @@ export default function App() {
             </div>
           </motion.div>
 
-          {/* Mockup Placeholder */}
+          {/* Compact Hero Mockup */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mt-16 w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white/50 backdrop-blur-sm"
+            className="mt-12 w-full max-w-2xl relative flex items-center justify-center px-4"
           >
-            <div className="aspect-video bg-gradient-to-br from-brand-blue to-brand-mint relative flex items-center justify-center group">
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Visual representation of PDFs */}
-                    <div className="absolute -left-12 bottom-0 w-32 h-44 bg-white rounded-lg shadow-lg -rotate-12 border border-slate-100 flex flex-col p-4">
-                       <div className="w-full h-2 bg-slate-100 rounded mb-2"></div>
-                       <div className="w-2/3 h-2 bg-slate-100 rounded mb-4"></div>
-                       <div className="flex-1 grid grid-cols-3 gap-1">
-                          {[...Array(9)].map((_, i) => <div key={i} className="bg-slate-50 rounded"></div>)}
-                       </div>
-                    </div>
-                    <div className="absolute -right-12 bottom-0 w-32 h-44 bg-brand-yellow rounded-lg shadow-lg rotate-12 border border-slate-100 p-4 flex flex-col">
-                       <div className="w-full h-2 bg-yellow-200 rounded mb-2"></div>
-                       <div className="w-2/3 h-2 bg-yellow-200 rounded mb-4"></div>
-                       <div className="flex-1 flex flex-col gap-2">
-                          <div className="w-full h-8 bg-white/50 rounded"></div>
-                          <div className="w-full h-8 bg-white/50 rounded"></div>
-                       </div>
-                    </div>
-                    <div className="relative z-10 w-48 h-64 bg-white rounded-xl shadow-2xl border border-slate-100 transform translate-y-4 flex flex-col p-6">
-                        <div className="w-12 h-12 bg-brand-primary/10 rounded-full flex items-center justify-center mb-4">
-                           <FileBadge className="text-brand-primary w-6 h-6" />
-                        </div>
-                        <div className="h-4 bg-slate-200 rounded w-full mb-3"></div>
-                        <div className="h-4 bg-slate-200 rounded w-2/3 mb-6"></div>
-                        <div className="space-y-3">
-                           {[...Array(4)].map((_, i) => <div key={i} className="h-2 bg-slate-100 rounded w-full"></div>)}
-                        </div>
-                    </div>
-                  </div>
-               </div>
-               <div className="absolute top-8 right-8 bg-brand-accent text-white px-6 py-2 rounded-full font-bold shadow-lg animate-bounce">
-                  +100 ATIVIDADES
-               </div>
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-brand-primary/10 blur-3xl rounded-full" />
+            
+            <div className="relative w-full aspect-[16/9] flex items-center justify-center">
+              {/* Back Page 1 */}
+              <motion.div 
+                initial={{ rotate: -10, x: -60, opacity: 0 }}
+                animate={{ rotate: -15, x: -80, opacity: 1 }}
+                transition={{ delay: 0.6, type: "spring" }}
+                className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
+              >
+                 <img src="https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png" alt="Preview 1" className="w-full h-full object-cover" />
+              </motion.div>
+
+              {/* Back Page 2 */}
+              <motion.div 
+                initial={{ rotate: 10, x: 60, opacity: 0 }}
+                animate={{ rotate: 15, x: 80, opacity: 1 }}
+                transition={{ delay: 0.7, type: "spring" }}
+                className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
+              >
+                 <img src="https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png" alt="Preview 2" className="w-full h-full object-cover" />
+              </motion.div>
+
+              {/* Main Cover */}
+              <motion.div 
+                whileHover={{ y: -10, scale: 1.05 }}
+                className="relative z-10 w-2/3 max-w-[280px] aspect-[3/4] bg-white rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform transition-all cursor-pointer"
+              >
+                 <img 
+                   src="https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png" 
+                   alt="Capa do Kit" 
+                   className="w-full h-full object-cover"
+                   referrerPolicy="no-referrer"
+                 />
+                 <div className="absolute top-4 right-4 bg-yellow-400 text-slate-900 text-[10px] font-black px-2 py-1 rounded-md shadow-sm uppercase tracking-tighter">
+                    Pronto para imprimir
+                 </div>
+              </motion.div>
+
+              {/* Floating Badge */}
+              <motion.div 
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-4 -right-4 z-20 bg-brand-primary text-white p-4 rounded-2xl shadow-xl flex items-center gap-3 border-2 border-white"
+              >
+                 <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <Sparkles className="w-5 h-5" />
+                 </div>
+                 <div className="pr-2">
+                    <p className="text-xs font-bold leading-none capitalize">Kit Completo</p>
+                    <p className="text-[10px] text-blue-100 font-medium">Ed. Infantil & Fundamental</p>
+                 </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -360,28 +390,60 @@ export default function App() {
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="bg-brand-blue/30 rounded-3xl p-8 relative overflow-hidden"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative aspect-square flex items-center justify-center p-12"
             >
-               <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <Heart className="w-32 h-32 text-blue-900" />
-               </div>
-               <div className="relative z-10">
-                  <div className="aspect-square bg-white/60 backdrop-blur rounded-2xl flex flex-col items-center justify-center p-8 text-center border border-white">
-                     <p className="text-2xl font-display font-medium text-slate-700 italic">
-                       "E agora, o que eu faço?"
-                     </p>
-                     <img 
-                      src="https://images.unsplash.com/photo-1544717297-fa95b3ee51f8?q=80&w=400&h=400&auto=format&fit=crop" 
-                      alt="Professora sobrecarregada"
-                      className="w-48 h-48 rounded-full object-cover my-6 shadow-lg border-4 border-white"
-                     />
-                     <span className="text-slate-500 text-sm">Chega de improviso e cansaço mental.</span>
-                  </div>
-               </div>
+              {/* Stacked Images Effect */}
+              <motion.div 
+                initial={{ rotate: -12, x: -20 }}
+                whileInView={{ rotate: -15, x: -40 }}
+                transition={{ duration: 1, type: "spring" }}
+                className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
+              >
+                <img 
+                  src="https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png" 
+                  alt="Kit Preview 1" 
+                  className="w-full h-auto object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+              
+              <motion.div 
+                initial={{ rotate: 12, x: 20 }}
+                whileInView={{ rotate: 15, x: 40 }}
+                transition={{ duration: 1, type: "spring", delay: 0.1 }}
+                className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
+              >
+                <img 
+                  src="https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png" 
+                  alt="Kit Preview 2" 
+                  className="w-full h-auto object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </motion.div>
+
+              <motion.div 
+                initial={{ y: 30, rotate: 0 }}
+                whileInView={{ y: 0 }}
+                transition={{ duration: 0.8, type: "spring", delay: 0.2 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="relative w-full h-auto rounded-3xl shadow-2xl border-8 border-white overflow-hidden z-10 transition-transform"
+              >
+                <img 
+                  src="https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png" 
+                  alt="Kit Principal Preview" 
+                  className="w-full h-auto object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 text-white text-center">
+                  <p className="font-display font-medium text-lg leading-tight uppercase tracking-widest bg-brand-primary px-4 py-1 inline-block rounded-full mb-2">
+                    A Solução que você buscava
+                  </p>
+                </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
