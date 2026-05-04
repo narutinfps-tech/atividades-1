@@ -28,10 +28,11 @@ const Button = ({ children, className = "", primary = true, onClick }: { childre
   <motion.button
     whileHover={{ 
       scale: 1.05, 
-      y: -2,
-      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" 
+      y: -5,
+      rotate: [0, -1, 1, 0],
+      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
     }}
-    whileTap={{ scale: 0.98, y: 0 }}
+    whileTap={{ scale: 0.95, y: 0 }}
     transition={{ type: "spring", stiffness: 400, damping: 10 }}
     onClick={onClick}
     className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
@@ -56,7 +57,12 @@ const SectionTitle = ({ children, subtitle, light = false }: { children: React.R
 
 const Card = ({ children, className = "" }: { children: React.ReactNode, className?: string, key?: React.Key }) => (
   <motion.div 
-    whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+    whileHover={{ 
+      y: -8, 
+      scale: 1.02,
+      boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" 
+    }}
+    whileTap={{ scale: 0.98 }}
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
     className={`p-8 rounded-3xl bg-white shadow-sm border border-slate-100 transition-colors ${className}`}
   >
@@ -70,7 +76,8 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
     <div className="border-b border-slate-200 last:border-0">
       <motion.button 
         whileHover={{ x: 5 }}
-        transition={{ type: "spring", stiffness: 300 }}
+        whileTap={{ scale: 0.99 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
       >
@@ -283,6 +290,7 @@ export default function App() {
               {/* Main Cover */}
               <motion.div 
                 whileHover={{ y: -10, scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
                 className="relative z-10 w-2/3 max-w-[280px] aspect-[3/4] bg-white rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform transition-all cursor-pointer"
               >
                  <img 
@@ -571,7 +579,8 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
-                whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+                whileHover={{ y: -8, scale: 1.05, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+                whileTap={{ scale: 0.95 }}
                 className="group p-8 rounded-[40px] border border-slate-100 bg-white shadow-sm transition-all flex flex-col items-center text-center"
               >
                 <div className={`w-16 h-16 rounded-3xl mb-6 flex items-center justify-center ${item.color} group-hover:scale-110 transition-transform`}>
@@ -613,7 +622,8 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+              whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+              whileTap={{ scale: 0.98 }}
               className="flex-1 bg-slate-800/50 backdrop-blur rounded-3xl p-8 border border-slate-700 transition-all"
             >
                <h3 className="text-2xl font-bold mb-6 text-red-400 flex items-center gap-2">
@@ -654,7 +664,8 @@ export default function App() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+              whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+              whileTap={{ scale: 0.98 }}
               className="flex-1 bg-brand-primary/10 backdrop-blur rounded-3xl p-8 border border-brand-primary/30 transition-all"
             >
                <h3 className="text-2xl font-bold mb-6 text-brand-primary flex items-center gap-2">
@@ -683,30 +694,17 @@ export default function App() {
       {/* 6. SEÇÃO “PARA QUEM É” */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-16 items-center">
+          <div className="max-w-4xl mx-auto">
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="md:w-1/2"
-            >
-               <img 
-                src="https://images.unsplash.com/photo-1577891729319-f4874c739880?q=80&w=800&auto=format&fit=crop" 
-                alt="Professora entusiasmada"
-                className="rounded-[40px] shadow-2xl"
-               />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:w-1/2"
-            >
-               <h2 className="text-3xl font-bold mb-8 text-slate-900 leading-tight">
-                 Esse kit é ideal para você se…
-               </h2>
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8 }}
+               className="w-full"
+             >
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-tight text-center">
+                  Esse kit é ideal para você se…
+                </h2>
                <div className="space-y-4">
                  {[
                    "Você é professora da Educação Infantil ou Fundamental 1.",
@@ -723,7 +721,8 @@ export default function App() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    whileHover={{ x: 5, backgroundColor: "rgba(187, 247, 208, 0.5)" }}
+                    whileHover={{ x: 8, scale: 1.02, backgroundColor: "rgba(187, 247, 208, 0.7)" }}
+                    whileTap={{ scale: 0.98 }}
                     className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint transition-colors cursor-default"
                    >
                       <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0" />
@@ -764,7 +763,8 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -10, scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="flex flex-col items-center text-center relative group"
               >
                  <div className="w-16 h-16 rounded-full bg-white shadow-md flex items-center justify-center mb-6 border-4 border-brand-yellow">
@@ -809,13 +809,13 @@ export default function App() {
                 title: "Bônus - MAIS 50 ATIVIDADES EXTRAS", 
                 desc: "Material complementar exclusivo para ampliar as possibilidades de ensino.", 
                 icon: <FileText className="w-5 h-5" />,
-                type: "stack"
+                img: "https://i.ibb.co/XZgjxXKB/Chat-GPT-Image-3-de-mai-de-2026-20-24-11.png"
               },
               { 
                 title: "Controle de Missões", 
                 desc: "Folha para acompanhar o progresso de cada aluno de forma lúdica.", 
                 icon: <ClipboardCheck className="w-5 h-5" />,
-                type: "progress"
+                img: "https://i.ibb.co/yBh9RMvX/Chat-GPT-Image-3-de-mai-de-2026-20-29-57.png"
               }
             ].map((bonus, i) => (
               <motion.div 
@@ -823,73 +823,49 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -10, scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="p-8 rounded-[2rem] bg-white border border-slate-100 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               >
-                {/* Custom Code-Based Mockup Visual */}
+                {/* Custom Mockup Visual */}
                 <div className="relative w-full aspect-square mb-8 flex items-center justify-center">
                   <div className="absolute inset-0 bg-brand-lilac/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500" />
                   
-                  {bonus.type === "stack" && (
-                    <div className="relative w-24 h-32">
-                      <div className="absolute inset-0 bg-slate-50 border border-slate-200 rounded shadow-sm translate-x-3 translate-y-3 rotate-6" />
-                      <div className="absolute inset-0 bg-slate-100 border border-slate-200 rounded shadow-sm translate-x-1.5 translate-y-1.5 rotate-3" />
-                      <div className="absolute inset-0 bg-white border border-brand-primary/20 rounded shadow-md flex flex-col p-3">
-                        <div className="w-full h-1 bg-brand-primary/10 rounded mb-2" />
-                        <div className="w-4/5 h-1 bg-brand-primary/10 rounded mb-4" />
-                        <div className="flex-1 space-y-2">
-                           {[...Array(4)].map((_, j) => <div key={j} className="h-1 bg-slate-100 rounded w-full" />)}
+                  {bonus.img ? (
+                    <motion.div 
+                      whileHover={{ scale: 1.1, rotate: 0 }}
+                      className="relative w-32 h-44 bg-white rounded-xl shadow-2xl border-4 border-white overflow-hidden rotate-2 transition-transform duration-500"
+                    >
+                      <img 
+                        src={bonus.img} 
+                        alt={bonus.title} 
+                        className="w-full h-full object-cover"
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                    </motion.div>
+                  ) : (
+                    <>
+                      {bonus.type === "progress" && (
+                        <div className="w-28 h-28 bg-white rounded-2xl shadow-lg border border-slate-100 p-4 flex flex-col justify-between">
+                          {[...Array(3)].map((_, j) => (
+                            <div key={j} className="flex items-center gap-2">
+                              <div className={`w-4 h-4 rounded-full flex items-center justify-center ${j < 2 ? 'bg-green-500 text-white' : 'border-2 border-slate-100'}`}>
+                                {j < 2 && <Check className="w-3 h-3" />}
+                              </div>
+                              <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <motion.div 
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: j < 2 ? '100%' : '40%' }}
+                                  className={`h-full ${j < 2 ? 'bg-green-400' : 'bg-brand-primary'}`} 
+                                />
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {bonus.type === "progress" && (
-                    <div className="w-28 h-28 bg-white rounded-2xl shadow-lg border border-slate-100 p-4 flex flex-col justify-between">
-                      {[...Array(3)].map((_, j) => (
-                        <div key={j} className="flex items-center gap-2">
-                          <div className={`w-4 h-4 rounded-full flex items-center justify-center ${j < 2 ? 'bg-green-500 text-white' : 'border-2 border-slate-100'}`}>
-                            {j < 2 && <Check className="w-3 h-3" />}
-                          </div>
-                          <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
-                            <motion.div 
-                              initial={{ width: 0 }}
-                              whileInView={{ width: j < 2 ? '100%' : '40%' }}
-                              className={`h-full ${j < 2 ? 'bg-green-400' : 'bg-brand-primary'}`} 
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {bonus.type === "folder" && (
-                    <div className="relative w-32 h-24">
-                       <div className="absolute inset-0 bg-brand-yellow/20 rounded-xl rounded-tl-none border-2 border-brand-yellow/40" />
-                       <div className="absolute -top-3 left-0 w-12 h-4 bg-brand-yellow/20 rounded-t-lg border-2 border-b-0 border-brand-yellow/40" />
-                       <div className="absolute inset-2 bg-white rounded-lg flex items-center justify-center">
-                          <div className="w-12 h-6 bg-brand-lilac/30 rounded border border-brand-lilac flex items-center justify-center">
-                             <div className="w-6 h-1 bg-brand-lilac" />
-                          </div>
-                       </div>
-                    </div>
-                  )}
-
-                  {bonus.type === "printer" && (
-                    <div className="relative w-28 h-28 flex items-center justify-center">
-                       <div className="absolute w-24 h-24 border-4 border-slate-200 rounded-full" />
-                       <Printer className="w-12 h-12 text-slate-400" />
-                       <motion.div 
-                         animate={{ y: [20, 0, 20] }}
-                         transition={{ duration: 3, repeat: Infinity }}
-                         className="absolute bottom-0 w-16 h-20 bg-white border border-slate-200 rounded shadow-lg p-2"
-                       >
-                          <div className="w-full h-full border border-slate-100 grid grid-cols-2 gap-1 p-1">
-                             {[...Array(6)].map((_, j) => <div key={j} className="bg-slate-100 rounded-sm" />)}
-                          </div>
-                       </motion.div>
-                    </div>
+                      )}
+                    </>
                   )}
 
                   <div className="absolute -top-2 -right-2 bg-brand-primary text-white p-2 rounded-xl shadow-lg z-20">
@@ -951,7 +927,8 @@ export default function App() {
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ y: -5, boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.25)" }}
+                    whileHover={{ y: -10, scale: 1.01, boxShadow: "0 35px 60px -15px rgb(0 0 0 / 0.3)" }}
+                    whileTap={{ scale: 0.99 }}
                     className="p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all"
                   >
                     <div className="absolute top-0 right-10 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm shadow-md">
