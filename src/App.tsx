@@ -560,7 +560,7 @@ export default function App() {
               { 
                 tag: "Premium", 
                 title: "Materiais de Organização", 
-                desc: "Cartazes, capas, etiquetas, controle de missões e páginas para organizar a rotina do já terminei.", 
+                desc: "Capas, etiquetas, controle de missões e páginas para organizar a rotina do já terminei.", 
                 color: "bg-yellow-50 text-yellow-700",
                 icon: <Layout className="w-8 h-8" />
               }
@@ -803,29 +803,107 @@ export default function App() {
             </SectionTitle>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
-              { title: "Cartaz: Terminei, e agora?", desc: "Para colocar na sala e orientar os alunos visualmente.", icon: <Layout /> },
-              { title: "Controle de Missões", desc: "Folha para acompanhar o progresso de cada aluno.", icon: <ClipboardCheck /> },
-              { title: "Capas e Etiquetas", desc: "Personalize sua pasta e materiais do kit.", icon: <Sparkles /> },
-              { title: "Versada Econômica", desc: "Atividades em P&B para economizar tinta.", icon: <Printer /> }
+              { 
+                title: "Bônus - MAIS 50 ATIVIDADES EXTRAS", 
+                desc: "Material complementar exclusivo para ampliar as possibilidades de ensino.", 
+                icon: <FileText className="w-5 h-5" />,
+                type: "stack"
+              },
+              { 
+                title: "Controle de Missões", 
+                desc: "Folha para acompanhar o progresso de cada aluno de forma lúdica.", 
+                icon: <ClipboardCheck className="w-5 h-5" />,
+                type: "progress"
+              }
             ].map((bonus, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
+                whileHover={{ y: -10 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="p-6 rounded-3xl bg-brand-lilac/30 border-2 border-brand-lilac flex flex-col items-center text-center shadow-sm transition-all"
+                className="p-8 rounded-[2rem] bg-white border border-slate-100 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               >
-                <div className="w-14 h-14 rounded-2xl bg-white shadow-sm flex items-center justify-center text-purple-600 mb-6">
-                   {bonus.icon}
+                {/* Custom Code-Based Mockup Visual */}
+                <div className="relative w-full aspect-square mb-8 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-brand-lilac/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500" />
+                  
+                  {bonus.type === "stack" && (
+                    <div className="relative w-24 h-32">
+                      <div className="absolute inset-0 bg-slate-50 border border-slate-200 rounded shadow-sm translate-x-3 translate-y-3 rotate-6" />
+                      <div className="absolute inset-0 bg-slate-100 border border-slate-200 rounded shadow-sm translate-x-1.5 translate-y-1.5 rotate-3" />
+                      <div className="absolute inset-0 bg-white border border-brand-primary/20 rounded shadow-md flex flex-col p-3">
+                        <div className="w-full h-1 bg-brand-primary/10 rounded mb-2" />
+                        <div className="w-4/5 h-1 bg-brand-primary/10 rounded mb-4" />
+                        <div className="flex-1 space-y-2">
+                           {[...Array(4)].map((_, j) => <div key={j} className="h-1 bg-slate-100 rounded w-full" />)}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {bonus.type === "progress" && (
+                    <div className="w-28 h-28 bg-white rounded-2xl shadow-lg border border-slate-100 p-4 flex flex-col justify-between">
+                      {[...Array(3)].map((_, j) => (
+                        <div key={j} className="flex items-center gap-2">
+                          <div className={`w-4 h-4 rounded-full flex items-center justify-center ${j < 2 ? 'bg-green-500 text-white' : 'border-2 border-slate-100'}`}>
+                            {j < 2 && <Check className="w-3 h-3" />}
+                          </div>
+                          <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              whileInView={{ width: j < 2 ? '100%' : '40%' }}
+                              className={`h-full ${j < 2 ? 'bg-green-400' : 'bg-brand-primary'}`} 
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {bonus.type === "folder" && (
+                    <div className="relative w-32 h-24">
+                       <div className="absolute inset-0 bg-brand-yellow/20 rounded-xl rounded-tl-none border-2 border-brand-yellow/40" />
+                       <div className="absolute -top-3 left-0 w-12 h-4 bg-brand-yellow/20 rounded-t-lg border-2 border-b-0 border-brand-yellow/40" />
+                       <div className="absolute inset-2 bg-white rounded-lg flex items-center justify-center">
+                          <div className="w-12 h-6 bg-brand-lilac/30 rounded border border-brand-lilac flex items-center justify-center">
+                             <div className="w-6 h-1 bg-brand-lilac" />
+                          </div>
+                       </div>
+                    </div>
+                  )}
+
+                  {bonus.type === "printer" && (
+                    <div className="relative w-28 h-28 flex items-center justify-center">
+                       <div className="absolute w-24 h-24 border-4 border-slate-200 rounded-full" />
+                       <Printer className="w-12 h-12 text-slate-400" />
+                       <motion.div 
+                         animate={{ y: [20, 0, 20] }}
+                         transition={{ duration: 3, repeat: Infinity }}
+                         className="absolute bottom-0 w-16 h-20 bg-white border border-slate-200 rounded shadow-lg p-2"
+                       >
+                          <div className="w-full h-full border border-slate-100 grid grid-cols-2 gap-1 p-1">
+                             {[...Array(6)].map((_, j) => <div key={j} className="bg-slate-100 rounded-sm" />)}
+                          </div>
+                       </motion.div>
+                    </div>
+                  )}
+
+                  <div className="absolute -top-2 -right-2 bg-brand-primary text-white p-2 rounded-xl shadow-lg z-20">
+                    {bonus.icon}
+                  </div>
                 </div>
-                <h4 className="text-slate-900 font-bold mb-3">{bonus.title}</h4>
-                <p className="text-sm text-slate-500">{bonus.desc}</p>
-                <div className="mt-4 text-xs font-bold text-purple-600 bg-white px-3 py-1 rounded-full uppercase tracking-wider">
-                  BÔNUS GRÁTIS
+
+                <h4 className="text-slate-900 font-bold text-lg mb-3 leading-tight uppercase tracking-tight">{bonus.title}</h4>
+                <p className="text-sm text-slate-500 mb-6 flex-grow">{bonus.desc}</p>
+                
+                <div className="w-full pt-4 border-t border-slate-50">
+                  <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest bg-brand-primary/5 px-4 py-2 rounded-full">
+                    LIBERADO GRÁTIS
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -898,7 +976,7 @@ export default function App() {
                          "Atividades de Português e Matemática",
                          "Lógica, Criatividade e Socioemocional",
                          "Todos os Bônus Especiais",
-                         "Cartazes de Apoio para sala",
+                         "Novas Atividades Extras",
                          "Garantia de Satisfação"
                        ].map((item, i) => (
                          <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
