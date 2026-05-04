@@ -22,6 +22,16 @@
   }
 }
 
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 .school-pattern {
   background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
   background-size: 24px 24px;

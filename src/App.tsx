@@ -115,7 +115,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
     
     <div className="space-y-10">
       {/* Row 1: Left to Right */}
-      <div className="relative flex overflow-x-hidden">
+      <div className="relative flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none pb-4">
         <motion.div 
           animate={{ x: ["0%", "-50%"] }}
           transition={{ 
@@ -123,7 +123,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
             duration: 30, 
             repeat: Infinity 
           }}
-          className="flex whitespace-nowrap gap-6"
+          className="flex whitespace-nowrap gap-6 px-4"
         >
           {[...Array(2)].map((_, listIdx) => (
             <div key={listIdx} className="flex gap-10">
@@ -156,7 +156,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
       </div>
 
       {/* Row 2: Right to Left */}
-      <div className="relative flex overflow-x-hidden">
+      <div className="relative flex overflow-x-auto scrollbar-hide cursor-grab active:cursor-grabbing select-none pb-4">
         <motion.div 
           animate={{ x: ["-50%", "0%"] }}
           transition={{ 
@@ -164,7 +164,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
             duration: 35, 
             repeat: Infinity 
           }}
-          className="flex whitespace-nowrap gap-6"
+          className="flex whitespace-nowrap gap-6 px-4"
         >
           {[...Array(2)].map((_, listIdx) => (
             <div key={listIdx} className="flex gap-10">
@@ -594,6 +594,17 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center mt-16"
+          >
+            <Button onClick={handleCheckout} className="bg-brand-primary text-white shadow-brand-primary/25">
+              QUERO RECEBER TUDO ISSO AGORA
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -863,6 +874,19 @@ export default function App() {
               </motion.div>
             ))}
           </div>
+
+          {/* New Strategic CTA Button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center mt-16"
+          >
+            <Button onClick={handleCheckout} className="mb-4">
+              GARANTIR TODOS OS BÔNUS + MEU KIT
+            </Button>
+            <p className="text-xs text-slate-400 font-medium">Acesso imediato e vitalício ao material</p>
+          </motion.div>
         </div>
       </section>
 
