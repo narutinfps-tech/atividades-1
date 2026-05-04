@@ -19,7 +19,8 @@ import {
   FileBadge,
   Sparkles,
   ClipboardCheck,
-  Check
+  Check,
+  Eye
 } from 'lucide-react';
 
 // --- Components ---
@@ -29,7 +30,7 @@ const Button = ({ children, className = "", primary = true, onClick }: { childre
     whileHover={{ 
       scale: 1.05, 
       y: -5,
-      rotate: [0, -1, 1, 0],
+      rotate: 1, 
       boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
     }}
     whileTap={{ scale: 0.95, y: 0 }}
@@ -199,6 +200,68 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
   </section>
 );
 
+const ActivityShowcase = ({ images }: { images: string[] }) => (
+  <section className="py-16 bg-slate-50/50 overflow-hidden border-y border-slate-100">
+    <div className="container mx-auto px-4">
+      <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+        <div className="lg:w-2/5 text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider mb-4">
+              <Eye className="w-3 h-3" />
+              Visualização Real
+            </div>
+            <h2 className="text-3xl font-bold text-slate-900 mb-6 leading-tight">
+              Dê uma olhada <span className="text-brand-primary">por dentro</span> do kit
+            </h2>
+            <p className="text-slate-600 mb-8 text-lg font-medium">
+              Material de alta qualidade pedagógica, com ilustrações profissionais e diagramação pensada no desenvolvimento infantil.
+            </p>
+          </motion.div>
+        </div>
+
+        <div className="lg:w-3/5 relative h-[380px] sm:h-[480px] w-full flex items-center justify-center lg:justify-end pr-0 lg:pr-24">
+          <div className="relative w-48 sm:w-64 aspect-[3/4]">
+             {images.slice(0, 5).map((imgSrc, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.8, x: 0 }}
+                  whileInView={{ 
+                    opacity: 1, 
+                    scale: 1,
+                    x: (idx - 2) * 55, 
+                    y: Math.abs(idx - 2) * 15,
+                    rotate: (idx - 2) * 10,
+                    zIndex: 5 + idx 
+                  }}
+                  whileHover={{ 
+                    scale: 1.1, 
+                    rotate: 0, 
+                    zIndex: 50,
+                    y: -40,
+                    transition: { type: "spring", stiffness: 300, damping: 20 } 
+                  }}
+                  viewport={{ once: true }}
+                  className="absolute inset-0 rounded-2xl overflow-hidden shadow-2xl border-4 border-white cursor-pointer bg-white"
+                >
+                  <img 
+                    src={imgSrc} 
+                    alt={`Amostra ${idx + 1}`} 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+             ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 // --- Main App ---
 
 export default function App() {
@@ -333,6 +396,15 @@ export default function App() {
 
       {/* CARROSSEL TOPO */}
       <ActivityCarousel title="Pronto para imprimir e usar" subtitle="Veja a qualidade pedagógica de cada página do kit" />
+
+      <ActivityShowcase images={[
+        "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
+        "https://i.ibb.co/2118g1J7/TABUADAS-INFANTIS-PARA-FAZER.png",
+        "https://i.ibb.co/QFtgvKdB/TABUADAS-INFANTIS-PARA-FAZER-1.png",
+        "https://i.ibb.co/HfGxMdxf/TABUADAS-INFANTIS-PARA-FAZER-2.png",
+        "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
+        "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png"
+      ]} />
 
       {/* 2. SEÇÃO DE IDENTIFICAÇÃO DA DOR */}
       <section className="py-24 bg-white overflow-hidden">
@@ -610,6 +682,15 @@ export default function App() {
 
       {/* SEÇÃO: ESTEIRA INFINITA DE ATIVIDADES (CARROSSEL) */}
       <ActivityCarousel title="Veja o material por dentro" subtitle="Exemplos reais das atividades que compõem o kit" />
+
+      <ActivityShowcase images={[
+        "https://i.ibb.co/MD1czcdj/Chat-GPT-Image-3-de-mai-de-2026-17-30-44.png",
+        "https://i.ibb.co/BH3KSb8F/diferen-as-de-imagens.png",
+        "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png",
+        "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
+        "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
+        "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png"
+      ]} />
 
       {/* 5. SEÇÃO DE TRANSFORMAÇÃO */}
       <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
