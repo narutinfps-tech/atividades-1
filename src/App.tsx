@@ -202,8 +202,8 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
 // --- Main App ---
 
 export default function App() {
-  const scrollToOffer = () => {
-    document.getElementById('checkout-section')?.scrollIntoView({ behavior: 'smooth' });
+  const handleCheckout = () => {
+    window.location.href = 'https://pay.cakto.com.br/bfi7tx9_872281';
   };
 
   return (
@@ -246,7 +246,7 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3 }}
           >
-            <Button onClick={scrollToOffer} className="mb-6">
+            <Button onClick={handleCheckout} className="mb-6">
               QUERO MEU KIT AGORA
             </Button>
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
@@ -832,7 +832,7 @@ export default function App() {
                 <div className="relative w-full aspect-square mb-8 flex items-center justify-center">
                   <div className="absolute inset-0 bg-brand-lilac/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500" />
                   
-                  {bonus.img ? (
+                  {bonus.img && (
                     <motion.div 
                       whileHover={{ scale: 1.1, rotate: 0 }}
                       className="relative w-32 h-44 bg-white rounded-xl shadow-2xl border-4 border-white overflow-hidden rotate-2 transition-transform duration-500"
@@ -845,27 +845,6 @@ export default function App() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     </motion.div>
-                  ) : (
-                    <>
-                      {bonus.type === "progress" && (
-                        <div className="w-28 h-28 bg-white rounded-2xl shadow-lg border border-slate-100 p-4 flex flex-col justify-between">
-                          {[...Array(3)].map((_, j) => (
-                            <div key={j} className="flex items-center gap-2">
-                              <div className={`w-4 h-4 rounded-full flex items-center justify-center ${j < 2 ? 'bg-green-500 text-white' : 'border-2 border-slate-100'}`}>
-                                {j < 2 && <Check className="w-3 h-3" />}
-                              </div>
-                              <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
-                                <motion.div 
-                                  initial={{ width: 0 }}
-                                  whileInView={{ width: j < 2 ? '100%' : '40%' }}
-                                  className={`h-full ${j < 2 ? 'bg-green-400' : 'bg-brand-primary'}`} 
-                                />
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </>
                   )}
 
                   <div className="absolute -top-2 -right-2 bg-brand-primary text-white p-2 rounded-xl shadow-lg z-20">
@@ -963,7 +942,7 @@ export default function App() {
                        ))}
                     </div>
 
-                    <Button className="w-full text-xl py-6 mb-6">
+                    <Button onClick={handleCheckout} className="w-full text-xl py-6 mb-6">
                        SIM, QUERO MEU KIT AGORA
                     </Button>
 
@@ -1111,7 +1090,7 @@ export default function App() {
               <p className="text-xl text-slate-700 mb-12 max-w-2xl mx-auto">
                 Tenha em mãos uma solução profissional para manter seus alunos aprendendo e sua sala em total harmonia.
               </p>
-              <Button onClick={scrollToOffer} className="shadow-2xl">
+              <Button onClick={handleCheckout} className="shadow-2xl">
                   QUERO BAIXAR O KIT AGORA
               </Button>
               <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-700 uppercase tracking-widest">
