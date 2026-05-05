@@ -275,32 +275,17 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-10 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-8 leading-relaxed"
           >
             O kit <strong className="text-slate-900">“Acabei, Professora!”</strong> reúne atividades rápidas, educativas e prontas para imprimir, criadas para manter os alunos ocupados e aprendendo enquanto a turma termina a tarefa principal.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <Button onClick={handleCheckout} className="mb-6">
-              QUERO MEU KIT AGORA
-            </Button>
-            <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
-              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> Acesso imediato</span>
-              <span className="flex items-center gap-1"><FileText className="w-4 h-4" /> Produto digital (PDF)</span>
-              <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para imprimir</span>
-            </div>
-          </motion.div>
 
           {/* Compact Hero Mockup */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-12 w-full max-w-2xl relative flex items-center justify-center px-4"
+            transition={{ delay: 0.2 }}
+            className="w-full max-w-2xl relative flex items-center justify-center px-4 mb-16"
           >
             {/* Background Glow */}
             <div className="absolute inset-0 bg-brand-primary/10 blur-3xl rounded-full" />
@@ -310,7 +295,7 @@ export default function App() {
               <motion.div 
                 initial={{ rotate: -10, x: -60, opacity: 0 }}
                 animate={{ rotate: -15, x: -80, opacity: 1 }}
-                transition={{ delay: 0.4, type: "spring", stiffness: 400 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 400 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png" alt="Preview 1" className="w-full h-full object-cover" />
@@ -320,7 +305,7 @@ export default function App() {
               <motion.div 
                 initial={{ rotate: 10, x: 60, opacity: 0 }}
                 animate={{ rotate: 15, x: 80, opacity: 1 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 400 }}
+                transition={{ delay: 0.4, type: "spring", stiffness: 400 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png" alt="Preview 2" className="w-full h-full object-cover" />
@@ -352,11 +337,26 @@ export default function App() {
                  <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
                     <Sparkles className="w-5 h-5" />
                  </div>
-                 <div className="pr-2">
+                 <div className="pr-2 text-left">
                     <p className="text-xs font-bold leading-none capitalize">Kit Completo</p>
                     <p className="text-[10px] text-blue-100 font-medium">Ed. Infantil & Fundamental</p>
                  </div>
               </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Button onClick={handleCheckout} className="mb-6">
+              QUERO MEU KIT AGORA
+            </Button>
+            <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
+              <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> Acesso imediato</span>
+              <span className="flex items-center gap-1"><FileText className="w-4 h-4" /> Produto digital (PDF)</span>
+              <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para imprimir</span>
             </div>
           </motion.div>
         </div>
