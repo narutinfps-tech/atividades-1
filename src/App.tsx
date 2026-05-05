@@ -24,39 +24,42 @@ import {
 
 // --- Components ---
 
-const Button = ({ children, className = "", primary = true, onClick }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void }) => (
-  <motion.button
-    animate={{ 
-      scale: [1, 1.03, 1],
-    }}
-    transition={{ 
-      duration: 2, 
-      repeat: Infinity,
-      ease: "easeInOut"
-    }}
-    whileHover={{ 
-      scale: 1.05, 
-      y: -5,
-      rotate: 1, 
-      boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
-    }}
-    whileTap={{ scale: 0.95, y: 0 }}
-    onClick={() => {
-      // Prevents the event object from being passed to the onClick handler,
-      // which avoids circular structure errors with tracking scripts.
-      if (onClick) {
-        onClick();
-      }
-    }}
-    className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
-      primary 
-      ? "bg-brand-accent text-white hover:bg-orange-500 shadow-orange-200" 
-      : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50"
-    } ${className}`}
-  >
-    {children}
-  </motion.button>
-);
+const Button = ({ children, className = "", primary = true, onClick, href }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void, href?: string }) => {
+  const Component = href ? motion.a : motion.button;
+  
+  return (
+    <Component
+      href={href}
+      animate={{ 
+        scale: [1, 1.03, 1],
+      }}
+      transition={{ 
+        duration: 2, 
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+      whileHover={{ 
+        scale: 1.05, 
+        y: -5,
+        rotate: 1, 
+        boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
+      }}
+      whileTap={{ scale: 0.95, y: 0 }}
+      onClick={(e) => {
+        if (onClick) {
+          onClick();
+        }
+      }}
+      className={`inline-flex items-center justify-center px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
+        primary 
+        ? "bg-brand-accent text-white hover:bg-orange-500 shadow-orange-200" 
+        : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50"
+      } ${className}`}
+    >
+      {children}
+    </Component>
+  );
+};
 
 const SectionTitle = ({ children, subtitle, light = false }: { children: React.ReactNode, subtitle?: string, light?: boolean }) => (
   <div className="text-center mb-12">
@@ -872,9 +875,12 @@ export default function App() {
                      ))}
                   </div>
 
-                  <Button onClick={() => handleCheckout('https://pay.cakto.com.br/bfi7tx9_872281')} className="w-full text-xl py-7 shadow-lg shadow-brand-primary/20">
+                  <a 
+                    href="https://pay.cakto.com.br/bfi7tx9_872281" 
+                    className="w-full text-xl py-7 rounded-2xl font-display font-bold shadow-lg shadow-brand-primary/20 bg-brand-accent text-white hover:bg-orange-500 flex items-center justify-center transition-all hover:scale-[1.02]"
+                  >
                      SIM, QUERO O KIT COMPLETO POR R$ 10
-                  </Button>
+                  </a>
                   
                   <div className="mt-8 flex flex-col items-center gap-4">
                      <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
