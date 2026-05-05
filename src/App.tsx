@@ -33,7 +33,7 @@ const Button = ({ children, className = "", primary = true, onClick }: { childre
       boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
     }}
     whileTap={{ scale: 0.95, y: 0 }}
-    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+    transition={{ type: "spring", stiffness: 500, damping: 25 }}
     onClick={onClick}
     className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
       primary 
@@ -63,7 +63,7 @@ const Card = ({ children, className = "" }: { children: React.ReactNode, classNa
       boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" 
     }}
     whileTap={{ scale: 0.98 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    transition={{ type: "spring", stiffness: 400, damping: 30 }}
     className={`p-8 rounded-3xl bg-white shadow-sm border border-slate-100 transition-colors ${className}`}
   >
     {children}
@@ -77,7 +77,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
       <motion.button 
         whileHover={{ x: 5 }}
         whileTap={{ scale: 0.99 }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ type: "spring", stiffness: 400, damping: 30 }}
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
       >
@@ -120,7 +120,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
           animate={{ x: ["0%", "-50%"] }}
           transition={{ 
             ease: "linear", 
-            duration: 30, 
+            duration: 20, 
             repeat: Infinity 
           }}
           className="flex whitespace-nowrap gap-6 px-4"
@@ -161,7 +161,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
           animate={{ x: ["-50%", "0%"] }}
           transition={{ 
             ease: "linear", 
-            duration: 35, 
+            duration: 25, 
             repeat: Infinity 
           }}
           className="flex whitespace-nowrap gap-6 px-4"
@@ -264,7 +264,7 @@ export default function App() {
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 drop-shadow-sm"
           >
             Seu aluno terminou antes? <br />
@@ -274,7 +274,7 @@ export default function App() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.1 }}
             className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-10 leading-relaxed"
           >
             O kit <strong className="text-slate-900">“Acabei, Professora!”</strong> reúne atividades rápidas, educativas e prontas para imprimir, criadas para manter os alunos ocupados e aprendendo enquanto a turma termina a tarefa principal.
@@ -283,7 +283,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2 }}
           >
             <Button onClick={handleCheckout} className="mb-6">
               QUERO MEU KIT AGORA
@@ -299,7 +299,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.3 }}
             className="mt-12 w-full max-w-2xl relative flex items-center justify-center px-4"
           >
             {/* Background Glow */}
@@ -310,7 +310,7 @@ export default function App() {
               <motion.div 
                 initial={{ rotate: -10, x: -60, opacity: 0 }}
                 animate={{ rotate: -15, x: -80, opacity: 1 }}
-                transition={{ delay: 0.6, type: "spring" }}
+                transition={{ delay: 0.4, type: "spring", stiffness: 400 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png" alt="Preview 1" className="w-full h-full object-cover" />
@@ -320,7 +320,7 @@ export default function App() {
               <motion.div 
                 initial={{ rotate: 10, x: 60, opacity: 0 }}
                 animate={{ rotate: 15, x: 80, opacity: 1 }}
-                transition={{ delay: 0.7, type: "spring" }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 400 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png" alt="Preview 2" className="w-full h-full object-cover" />
@@ -380,7 +380,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle 
               subtitle="Toda professora do Ensino Fundamental 1 conhece esse ciclo desgastante."
@@ -394,7 +394,7 @@ export default function App() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-6"
             >
               <p className="text-lg text-slate-600 leading-relaxed">
@@ -440,14 +440,14 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="relative aspect-square flex items-center justify-center p-12"
             >
               {/* Stacked Images Effect */}
               <motion.div 
                 initial={{ rotate: -12, x: -20 }}
                 whileInView={{ rotate: -15, x: -40 }}
-                transition={{ duration: 1, type: "spring" }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 400 }}
                 className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
               >
                 <img 
@@ -461,7 +461,7 @@ export default function App() {
               <motion.div 
                 initial={{ rotate: 12, x: 20 }}
                 whileInView={{ rotate: 15, x: 40 }}
-                transition={{ duration: 1, type: "spring", delay: 0.1 }}
+                transition={{ duration: 0.6, type: "spring", stiffness: 400, delay: 0.1 }}
                 className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
               >
                 <img 
@@ -475,7 +475,7 @@ export default function App() {
               <motion.div 
                 initial={{ y: 30, rotate: 0 }}
                 whileInView={{ y: 0 }}
-                transition={{ duration: 0.8, type: "spring", delay: 0.2 }}
+                transition={{ duration: 0.5, type: "spring", stiffness: 400, delay: 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="relative w-full h-auto rounded-3xl shadow-2xl border-8 border-white overflow-hidden z-10 transition-transform"
               >
@@ -503,7 +503,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle 
               subtitle="Uma ferramenta prática e educativa para deixar sua aula fluir com tranquilidade."
@@ -516,7 +516,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-4xl mx-auto text-center mb-16"
           >
             <p className="text-xl text-slate-600 leading-relaxed">
@@ -540,7 +540,7 @@ export default function App() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
               >
                 <Card className="flex flex-col items-center text-center h-full">
                   <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-brand-primary mb-4">
@@ -562,7 +562,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
           </motion.div>
@@ -617,7 +617,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
                 whileHover={{ y: -8, scale: 1.05, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 className="group p-8 rounded-[40px] border border-slate-100 bg-white shadow-sm transition-all flex flex-col items-center text-center"
@@ -667,7 +667,7 @@ export default function App() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle light subtitle="A rotina que você sempre quis, agora em um kit pronto para usar.">
               Antes, era improviso. Agora, é rotina pronta.
@@ -680,8 +680,8 @@ export default function App() {
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
               whileTap={{ scale: 0.98 }}
               className="flex-1 bg-slate-800/50 backdrop-blur rounded-3xl p-8 border border-slate-700 transition-all"
             >
@@ -710,7 +710,7 @@ export default function App() {
                  initial={{ opacity: 0, scale: 0 }}
                  whileInView={{ opacity: 1, scale: 1 }}
                  viewport={{ once: true }}
-                 transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
+                transition={{ type: "spring", stiffness: 400, delay: 0.3 }}
                  className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-lg transform md:rotate-0 rotate-90"
                >
                   <ArrowRight className="text-white w-6 h-6" />
@@ -722,8 +722,8 @@ export default function App() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ y: -8, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
               whileTap={{ scale: 0.98 }}
               className="flex-1 bg-brand-primary/10 backdrop-blur rounded-3xl p-8 border border-brand-primary/30 transition-all"
             >
@@ -758,7 +758,7 @@ export default function App() {
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
-               transition={{ duration: 0.8 }}
+               transition={{ duration: 0.5 }}
                className="w-full"
              >
                 <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-tight text-center">
@@ -779,7 +779,7 @@ export default function App() {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
+                    transition={{ delay: i * 0.05 }}
                     whileHover={{ x: 8, scale: 1.02, backgroundColor: "rgba(187, 247, 208, 0.7)" }}
                     whileTap={{ scale: 0.98 }}
                     className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint transition-colors cursor-default"
@@ -801,7 +801,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle subtitle="Implementação rápida que não exige esforço adicional.">
               Como usar em sala de aula?
@@ -821,7 +821,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
+                transition={{ duration: 0.3, delay: i * 0.08 }}
                 whileHover={{ y: -10, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex flex-col items-center text-center relative group"
@@ -838,7 +838,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className="mt-16 text-center"
           >
              <p className="text-2xl font-display font-medium text-brand-primary">
@@ -855,7 +855,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
           >
             <SectionTitle subtitle="Presentes exclusivos para quem garantir o kit hoje.">
               Comprando hoje, você também recebe bônus especiais.
@@ -884,7 +884,7 @@ export default function App() {
                 viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="p-8 rounded-[2rem] bg-white border border-slate-100 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               >
                 {/* Custom Mockup Visual */}
@@ -978,6 +978,7 @@ export default function App() {
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     viewport={{ once: true }}
+                    transition={{ duration: 0.4 }}
                     whileHover={{ y: -10, scale: 1.01, boxShadow: "0 35px 60px -15px rgb(0 0 0 / 0.3)" }}
                     whileTap={{ scale: 0.99 }}
                     className="p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all"
@@ -1043,7 +1044,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.5 }}
             whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
             className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
           >
@@ -1093,7 +1094,7 @@ export default function App() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
               >
                 <Card className="relative pt-12 italic text-slate-700 bg-white/80 backdrop-blur h-full">
                   <div className="absolute top-8 left-8 text-6xl text-brand-mint select-none pointer-events-none">“</div>
@@ -1155,6 +1156,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
            >
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 max-w-4xl mx-auto leading-tight">
                 Na próxima vez que um aluno disser “professora, já terminei”, você não vai precisar improvisar.
