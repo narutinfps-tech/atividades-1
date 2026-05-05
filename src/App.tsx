@@ -206,44 +206,7 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
   </section>
 );
 
-const ActivityShowcase = ({ images }: { images: string[] }) => (
-  <section className="py-20 bg-white">
-    <div className="container mx-auto px-4">
-      <div className="text-center mb-16">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"
-        >
-          Dê uma olhada de perto em alguns materiais
-        </motion.h2>
-        <div className="w-24 h-1 bg-brand-primary mx-auto rounded-full" />
-      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {images.map((imgSrc, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border-4 border-slate-50"
-          >
-            <img 
-              src={imgSrc} 
-              alt={`Amostra de Atividade ${idx + 1}`} 
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
 
 // --- Main App ---
 
@@ -512,9 +475,7 @@ export default function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <SectionTitle 
-              subtitle="Uma ferramenta prática e educativa para deixar sua aula fluir com tranquilidade."
-            >
+            <SectionTitle>
               Uma pasta pronta para salvar sua rotina.
             </SectionTitle>
           </motion.div>
@@ -647,14 +608,7 @@ export default function App() {
       {/* SEÇÃO: ESTEIRA INFINITA DE ATIVIDADES (CARROSSEL) */}
       <ActivityCarousel title="Veja o material por dentro" subtitle="Exemplos reais das atividades que compõem o kit" />
 
-      <ActivityShowcase images={[
-        "https://i.ibb.co/MD1czcdj/Chat-GPT-Image-3-de-mai-de-2026-17-30-44.png",
-        "https://i.ibb.co/BH3KSb8F/diferen-as-de-imagens.png",
-        "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png",
-        "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
-        "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
-        "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png"
-      ]} />
+
 
 
 
@@ -945,39 +899,6 @@ export default function App() {
           </div>
         </section>
 
-      {/* 11. SEÇÃO DE GARANTIA */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
-            className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
-          >
-             <div className="flex-shrink-0">
-                <div className="relative w-40 h-40 flex items-center justify-center">
-                   <ShieldCheck className="w-full h-full text-emerald-500/20 absolute" />
-                   <div className="relative z-10 flex flex-col items-center">
-                      <span className="text-4xl font-bold text-emerald-600">7</span>
-                      <span className="text-sm font-bold text-emerald-600 uppercase">Dias</span>
-                   </div>
-                </div>
-             </div>
-             <div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Você compra sem risco.</h2>
-                <p className="text-slate-600 leading-relaxed mb-6">
-                  Se por algum motivo você sentir que o material não é para você, poderá solicitar reembolso dentro do prazo de garantia de 7 dias após a compra. Sem letras miúdas, sem complicaçoes.
-                </p>
-                <p className="font-medium text-slate-800">
-                  Você pode acessar, baixar, avaliar e decidir com total tranquilidade.
-                </p>
-             </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* 12. SEÇÃO DE DEPOIMENTOS */}
       <section className="py-24 bg-brand-mint/20 overflow-hidden">
         <div className="container mx-auto px-4">
@@ -1028,6 +949,39 @@ export default function App() {
           <div className="mt-12 text-center text-slate-500 text-sm">
              Área destinada a depoimentos de clientes reais.
           </div>
+        </div>
+      </section>
+
+      {/* 11. SEÇÃO DE GARANTIA */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
+            className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
+          >
+             <div className="flex-shrink-0">
+                <div className="relative w-40 h-40 flex items-center justify-center">
+                   <ShieldCheck className="w-full h-full text-emerald-500/20 absolute" />
+                   <div className="relative z-10 flex flex-col items-center">
+                      <span className="text-4xl font-bold text-emerald-600">7</span>
+                      <span className="text-sm font-bold text-emerald-600 uppercase">Dias</span>
+                   </div>
+                </div>
+             </div>
+             <div>
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">Você compra sem risco.</h2>
+                <p className="text-slate-600 leading-relaxed mb-6">
+                  Se por algum motivo você sentir que o material não é para você, poderá solicitar reembolso dentro do prazo de garantia de 7 dias após a compra. Sem letras miúdas, sem complicaçoes.
+                </p>
+                <p className="font-medium text-slate-800">
+                  Você pode acessar, baixar, avaliar e decidir com total tranquilidade.
+                </p>
+             </div>
+          </motion.div>
         </div>
       </section>
 
