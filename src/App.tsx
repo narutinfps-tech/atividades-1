@@ -26,6 +26,14 @@ import {
 
 const Button = ({ children, className = "", primary = true, onClick }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void }) => (
   <motion.button
+    animate={{ 
+      scale: [1, 1.03, 1],
+    }}
+    transition={{ 
+      duration: 2, 
+      repeat: Infinity,
+      ease: "easeInOut"
+    }}
     whileHover={{ 
       scale: 1.05, 
       y: -5,
@@ -33,7 +41,6 @@ const Button = ({ children, className = "", primary = true, onClick }: { childre
       boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
     }}
     whileTap={{ scale: 0.95, y: 0 }}
-    transition={{ type: "spring", stiffness: 500, damping: 25 }}
     onClick={onClick}
     className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
       primary 
