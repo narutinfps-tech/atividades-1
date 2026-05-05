@@ -211,8 +211,15 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
 // --- Main App ---
 
 export default function App() {
-  const handleCheckout = () => {
-    window.location.href = 'https://pay.cakto.com.br/bfi7tx9_872281';
+  const scrollToCheckout = () => {
+    const element = document.getElementById('checkout-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCheckout = (url = 'https://pay.cakto.com.br/bfi7tx9_872281') => {
+    window.location.href = url;
   };
 
   return (
@@ -320,7 +327,7 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <Button onClick={handleCheckout} className="mb-6">
+            <Button onClick={scrollToCheckout} className="mb-6">
               QUERO MEU KIT AGORA
             </Button>
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
@@ -598,7 +605,7 @@ export default function App() {
             viewport={{ once: true }}
             className="flex flex-col items-center mt-16"
           >
-            <Button onClick={handleCheckout} className="bg-brand-primary text-white shadow-brand-primary/25">
+            <Button onClick={scrollToCheckout} className="bg-brand-primary text-white shadow-brand-primary/25">
               QUERO RECEBER TUDO ISSO AGORA
             </Button>
           </motion.div>
@@ -792,7 +799,7 @@ export default function App() {
             viewport={{ once: true }}
             className="flex flex-col items-center mt-16"
           >
-            <Button onClick={handleCheckout} className="mb-4">
+            <Button onClick={scrollToCheckout} className="mb-4">
               GARANTIR TODOS OS BÔNUS + MEU KIT
             </Button>
             <p className="text-xs text-slate-400 font-medium">Acesso imediato e vitalício ao material</p>
@@ -804,100 +811,80 @@ export default function App() {
       <section id="checkout-section" className="py-32 bg-brand-blue relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 school-pattern pointer-events-none" />
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-12 items-stretch">
-               
-               {/* Content */}
-               <div className="lg:w-1/2 flex flex-col justify-center">
-                  <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-                    Quanto vale ter sempre uma atividade pronta?
-                  </h2>
-                  <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Pense em quantas vezes por semana você precisa improvisar algo às pressas. Agora imagine ter um material pronto, organizado e fácil de aplicar sempre que isso acontecer.
-                  </p>
-                  <ul className="space-y-4 mb-4">
-                    {[
-                      "Economia real de tempo de planejamento.",
-                      "Muito mais organização na sua rotina.",
-                      "Redução drástica de barulhos na aula.",
-                      "Alunos mais autônomos e focados.",
-                      "Muito mais tranquilidade emocional para você."
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-slate-700 font-medium">
-                         <div className="w-5 h-5 rounded-full bg-brand-primary/20 flex items-center justify-center">
-                            <Check className="w-3 h-3 text-brand-primary" />
-                         </div>
-                         {item}
-                      </li>
-                    ))}
-                  </ul>
-               </div>
+        <div className="container mx-auto px-4 relative z-10 text-center">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+              Escolha o melhor plano para você
+            </h2>
+            <p className="text-lg text-slate-600 mb-16 max-w-2xl mx-auto">
+              Tenha acesso imediato a um material pronto, organizado e fácil de aplicar. Escolha entre o kit essencial ou a experiência completa com todos os bônus.
+            </p>
 
-               {/* Pricing Card */}
-               <div className="lg:w-1/2">
-                  <motion.div 
-                    initial={{ y: 20, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4 }}
-                    whileHover={{ y: -10, scale: 1.01, boxShadow: "0 35px 60px -15px rgb(0 0 0 / 0.3)" }}
-                    whileTap={{ scale: 0.99 }}
-                    className="p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all"
-                  >
-                    <div className="absolute top-0 right-10 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-sm shadow-md">
-                       OFERTA LIMITADA
-                    </div>
+            <div className="max-w-xl mx-auto">
+                <motion.div 
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="flex flex-col p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all text-left"
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold text-sm shadow-xl whitespace-nowrap">
+                     ✨ OFERTA EXCLUSIVA: KIT COMPLETO ✨
+                  </div>
 
-                    <div className="mb-8 text-center pb-8 border-b border-slate-100">
-                       <h3 className="text-2xl font-bold text-slate-900 mb-4">Leve agora o Kit completo</h3>
-                       <div className="flex flex-col items-center">
-                          <span className="text-slate-400 line-through text-lg">De R$ 47,00</span>
-                          <div className="flex items-baseline gap-1">
-                             <span className="text-lg font-bold text-slate-900">R$</span>
-                             <span className="text-6xl font-black text-brand-primary">10,00</span>
-                          </div>
-                          <span className="text-slate-500 font-medium">Acesso Vitalício em PDF</span>
+                  <div className="mb-8 border-b border-slate-100 pb-8 text-center md:text-left">
+                     <div className="text-brand-primary font-bold text-sm uppercase tracking-widest mb-2 flex items-center justify-center md:justify-start gap-2">
+                        <Sparkles className="w-5 h-5 fill-yellow-400 text-yellow-400" /> PLANO OURO (ACESSO TOTAL)
+                     </div>
+                     <h3 className="text-3xl font-bold text-slate-900 mb-6 italic">Quanto vale ter sua rotina pronta?</h3>
+                     
+                     <div className="flex flex-col items-center md:items-start">
+                        <span className="text-slate-400 line-through text-lg">De R$ 67,00</span>
+                        <div className="flex items-baseline gap-1">
+                           <span className="text-xl font-bold text-slate-900">R$</span>
+                           <span className="text-7xl font-black text-brand-primary">10,00</span>
+                        </div>
+                        <p className="text-slate-500 text-sm mt-3 font-medium">Pagamento único • Acesso Vitalício para baixar</p>
+                     </div>
+                  </div>
+
+                  <div className="space-y-4 mb-10 flex-grow">
+                     {[
+                       "Kit 'Acabei, Professora!' (+100 Atividades)",
+                       "BÔNUS: +50 Atividades Extras de Português e Matemática",
+                       "BÔNUS: Planner de Aula 2024 Completo",
+                       "BÔNUS: Painéis de Sala Decorativos Prontos",
+                       "Certificado de Aluno Protagonista",
+                       "Acesso Vitalício + Todas as Atualizações futuras",
+                       "Suporte VIP via WhatsApp"
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-start gap-3 text-sm text-slate-600">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                          <span className={i < 5 ? "font-semibold text-slate-800" : ""}>{item}</span>
                        </div>
-                    </div>
+                     ))}
+                  </div>
 
-                    <div className="space-y-3 mb-10">
-                       {[
-                         "Kit 'Acabei, Professora!'",
-                         "Atividades de Português e Matemática",
-                         "Lógica, Criatividade e Socioemocional",
-                         "Todos os Bônus Especiais",
-                         "Novas Atividades Extras",
-                         "Garantia de Satisfação"
-                       ].map((item, i) => (
-                         <div key={i} className="flex items-center gap-2 text-sm text-slate-600">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                            <span>{item}</span>
-                         </div>
-                       ))}
-                    </div>
-
-                    <Button onClick={handleCheckout} className="w-full text-xl py-6 mb-6">
-                       SIM, QUERO MEU KIT AGORA
-                    </Button>
-
-                    <div className="flex justify-center flex-col items-center gap-4">
-                       <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
-                          {/* Payment methods icons would go here, simplified for demo */}
-                          <div className="w-10 h-6 bg-slate-200 rounded"></div>
-                          <div className="w-10 h-6 bg-slate-200 rounded"></div>
-                          <div className="w-10 h-6 bg-slate-200 rounded"></div>
-                       </div>
-                       <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                          <ShieldCheck className="w-4 h-4" /> Pagamento 100% Seguro
-                       </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
+                  <Button onClick={() => handleCheckout('https://pay.cakto.com.br/bfi7tx9_872281')} className="w-full text-xl py-7 shadow-lg shadow-brand-primary/20">
+                     SIM, QUERO O KIT COMPLETO POR R$ 10
+                  </Button>
+                  
+                  <div className="mt-8 flex flex-col items-center gap-4">
+                     <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">PIX</div>
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">CARTÃO</div>
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">BOLETO</div>
+                     </div>
+                     <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                        <ShieldCheck className="w-4 h-4 text-emerald-500" /> Transação 100% Segura
+                     </div>
+                  </div>
+                </motion.div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
       {/* 12. SEÇÃO DE DEPOIMENTOS */}
       <section className="py-24 bg-brand-mint/20 overflow-hidden">
@@ -1026,7 +1013,7 @@ export default function App() {
               <p className="text-xl text-slate-700 mb-12 max-w-2xl mx-auto">
                 Tenha em mãos uma solução profissional para manter seus alunos aprendendo e sua sala em total harmonia.
               </p>
-              <Button onClick={handleCheckout} className="shadow-2xl">
+              <Button onClick={scrollToCheckout} className="shadow-2xl">
                   QUERO BAIXAR O KIT AGORA
               </Button>
               <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-700 uppercase tracking-widest">
