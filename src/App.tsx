@@ -327,7 +327,7 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <Button onClick={scrollToCheckout} className="mb-6">
+            <Button onClick={() => scrollToCheckout()} className="mb-6">
               QUERO MEU KIT AGORA
             </Button>
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-slate-500">
@@ -605,7 +605,7 @@ export default function App() {
             viewport={{ once: true }}
             className="flex flex-col items-center mt-16"
           >
-            <Button onClick={scrollToCheckout} className="bg-brand-primary text-white shadow-brand-primary/25">
+            <Button onClick={() => scrollToCheckout()} className="bg-brand-primary text-white shadow-brand-primary/25">
               QUERO RECEBER TUDO ISSO AGORA
             </Button>
           </motion.div>
@@ -799,7 +799,7 @@ export default function App() {
             viewport={{ once: true }}
             className="flex flex-col items-center mt-16"
           >
-            <Button onClick={scrollToCheckout} className="mb-4">
+            <Button onClick={() => scrollToCheckout()} className="mb-4">
               QUERO TODOS OS BÔNUS + MEU KIT
             </Button>
             <p className="text-xs text-slate-400 font-medium">Acesso imediato e vitalício ao material</p>
@@ -1013,7 +1013,7 @@ export default function App() {
               <p className="text-xl text-slate-700 mb-12 max-w-2xl mx-auto">
                 Tenha em mãos uma solução profissional para manter seus alunos aprendendo e sua sala em total harmonia.
               </p>
-              <Button onClick={scrollToCheckout} className="shadow-2xl">
+              <Button onClick={() => scrollToCheckout()} className="shadow-2xl">
                   QUERO BAIXAR O KIT AGORA
               </Button>
               <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm font-bold text-slate-700 uppercase tracking-widest">
