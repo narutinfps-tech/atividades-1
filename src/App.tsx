@@ -1085,7 +1085,7 @@ export default function App() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { name: "Prof. Carla Silva", role: "Fundamental 1", text: "Usei com minha turma do 2º ano e foi ótimo. Os alunos que terminavam rápido agora já sabem que têm uma missão para fazer. Me sinto muito mais no controle!" },
+              { name: "Prof. Carla Silva", role: "Fundamental 1", text: "O Kit Acabei, Professora! mudou a dinâmica da minha sala. Aqueles 10 minutos de 'caos' quando os primeiros terminavam sumiram. Agora eles ficam engajados e eu consigo dar atenção para quem ainda está fazendo a tarefa principal." },
               { name: "Luciana M.", role: "Pedagoga", text: "Me ajudou muito nos momentos em que alguns alunos terminavam antes. O material é lindo e flui super bem. Ficou tudo mais organizado na escola." },
               { name: "Patrícia Souza", role: "Alfabetizadora", text: "Material bonito, prático e muito fácil de imprimir. Meus pequenos adoraram os desafios e pararam de correr pela sala. Recomendo muito!" }
             ].map((d, i) => (
