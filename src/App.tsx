@@ -512,17 +512,7 @@ export default function App() {
             </SectionTitle>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-4xl mx-auto text-center mb-16"
-          >
-            <p className="text-xl text-slate-600 leading-relaxed">
-              O <strong>“Acabei, Professora!”</strong> é um kit digital com atividades extras, rápidas e educativas para entregar aos alunos que terminam antes. Assim, eles continuam aprendendo de forma independente, enquanto você consegue seguir com a aula sem perder o controle da turma.
-            </p>
-          </motion.div>
+
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -659,96 +649,7 @@ export default function App() {
         "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png"
       ]} />
 
-      {/* 5. SEÇÃO DE TRANSFORMAÇÃO */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute inset-0 opacity-10 school-pattern pointer-events-none" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <SectionTitle light subtitle="A rotina que você sempre quis, agora em um kit pronto para usar.">
-              Antes, era improviso. Agora, é rotina pronta.
-            </SectionTitle>
-          </motion.div>
 
-          <div className="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto">
-            {/* Antes */}
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-              whileTap={{ scale: 0.98 }}
-              className="flex-1 bg-slate-800/50 backdrop-blur rounded-3xl p-8 border border-slate-700 transition-all"
-            >
-               <h3 className="text-2xl font-bold mb-6 text-red-400 flex items-center gap-2">
-                 <span className="w-8 h-8 rounded-full bg-red-400/20 flex items-center justify-center text-sm">✕</span>
-                 Cenário Atual (Sem o Kit)
-               </h3>
-               <ul className="space-y-4">
-                 {[
-                   "Aluno terminou e ficou sem fazer nada.",
-                   "Professora teve que pensar em algo na hora.",
-                   "Conversas e barulhos começaram.",
-                   "Outros alunos perderam o foco total.",
-                   "A aula ficou agitada e cansativa."
-                 ].map((item, i) => (
-                   <li key={i} className="flex items-start gap-3 text-slate-300">
-                      <ArrowRight className="w-4 h-4 mt-1 shrink-0 text-slate-600" />
-                      <span>{item}</span>
-                   </li>
-                 ))}
-               </ul>
-            </motion.div>
-
-            <div className="flex items-center justify-center">
-               <motion.div 
-                 initial={{ opacity: 0, scale: 0 }}
-                 whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true }}
-                transition={{ type: "spring", stiffness: 400, delay: 0.3 }}
-                 className="w-12 h-12 bg-brand-primary rounded-full flex items-center justify-center shadow-lg transform md:rotate-0 rotate-90"
-               >
-                  <ArrowRight className="text-white w-6 h-6" />
-               </motion.div>
-            </div>
-
-            {/* Depois */}
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              whileHover={{ y: -5, scale: 1.02, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-              whileTap={{ scale: 0.98 }}
-              className="flex-1 bg-brand-primary/10 backdrop-blur rounded-3xl p-8 border border-brand-primary/30 transition-all"
-            >
-               <h3 className="text-2xl font-bold mb-6 text-brand-primary flex items-center gap-2">
-                 <span className="w-8 h-8 rounded-full bg-brand-primary/20 flex items-center justify-center text-sm">✓</span>
-                 Com o Kit Instalado
-               </h3>
-               <ul className="space-y-4">
-                 {[
-                   "Aluno terminou e recebeu uma missão pronta.",
-                   "Suporte contínuo para quem termina rápido.",
-                   "O aluno ficou ocupado, focado e aprendendo.",
-                   "A sala continuou tranquila e em silêncio.",
-                   "Sua rotina ficou organizada e profissional."
-                 ].map((item, i) => (
-                   <li key={i} className="flex items-start gap-3 text-blue-100">
-                      <Check className="w-4 h-4 mt-1 shrink-0 text-brand-primary" />
-                      <span className="font-medium">{item}</span>
-                   </li>
-                 ))}
-               </ul>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* 6. SEÇÃO “PARA QUEM É” */}
       <section className="py-24 bg-white overflow-hidden">
