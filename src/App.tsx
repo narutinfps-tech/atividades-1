@@ -800,7 +800,7 @@ export default function App() {
             className="flex flex-col items-center mt-16"
           >
             <Button onClick={scrollToCheckout} className="mb-4">
-              GARANTIR TODOS OS BÔNUS + MEU KIT
+              QUERO TODOS OS BÔNUS + MEU KIT
             </Button>
             <p className="text-xs text-slate-400 font-medium">Acesso imediato e vitalício ao material</p>
           </motion.div>
