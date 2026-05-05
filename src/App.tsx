@@ -41,7 +41,13 @@ const Button = ({ children, className = "", primary = true, onClick }: { childre
       boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
     }}
     whileTap={{ scale: 0.95, y: 0 }}
-    onClick={onClick}
+    onClick={() => {
+      // Prevents the event object from being passed to the onClick handler,
+      // which avoids circular structure errors with tracking scripts.
+      if (onClick) {
+        onClick();
+      }
+    }}
     className={`px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
       primary 
       ? "bg-brand-accent text-white hover:bg-orange-500 shadow-orange-200" 
