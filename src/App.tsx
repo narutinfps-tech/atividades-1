@@ -826,70 +826,117 @@ export default function App() {
               Escolha o melhor plano para você
             </h2>
             <p className="text-lg text-slate-600 mb-16 max-w-2xl mx-auto">
-              Tenha acesso imediato a um material pronto, organizado e fácil de aplicar. Escolha entre o kit essencial ou a experiência completa com todos os bônus.
+              Tenha acesso imediato a um material pronto, organizado e fácil de aplicar. Escolha o plano que melhor atende sua sala de aula.
             </p>
 
-            <div className="max-w-xl mx-auto">
-                <motion.div 
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+               
+               {/* Pricing Card 1 - Ouro (Economic) */}
+               <motion.div 
+                  initial={{ x: -20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="flex flex-col p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all text-left"
+                  whileHover={{ y: -5 }}
+                  className="flex flex-col p-8 rounded-[40px] bg-white shadow-xl relative border-2 border-slate-100 transition-all text-left"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold text-sm shadow-xl whitespace-nowrap">
-                     ✨ OFERTA EXCLUSIVA: KIT COMPLETO ✨
-                  </div>
-
-                  <div className="mb-8 border-b border-slate-100 pb-8 text-center md:text-left">
-                     <div className="text-brand-primary font-bold text-sm uppercase tracking-widest mb-2 flex items-center justify-center md:justify-start gap-2">
-                        <Sparkles className="w-5 h-5 fill-yellow-400 text-yellow-400" /> PLANO OURO (ACESSO TOTAL)
-                     </div>
-                     <h3 className="text-3xl font-bold text-slate-900 mb-6 italic">Quanto vale ter sua rotina pronta?</h3>
+                  <div className="mb-8 border-b border-slate-100 pb-8">
+                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1">PLANO OURO</div>
+                     <h3 className="text-xl font-bold text-slate-900 mb-6 italic">Kit Essencial</h3>
                      
-                     <div className="flex flex-col items-center md:items-start">
-                        <span className="text-slate-400 line-through text-lg">De R$ 67,00</span>
+                     <div className="flex flex-col">
+                        <span className="text-slate-400 line-through text-sm">De R$ 37,00</span>
                         <div className="flex items-baseline gap-1">
-                           <span className="text-xl font-bold text-slate-900">R$</span>
-                           <span className="text-7xl font-black text-brand-primary">10,00</span>
+                           <span className="text-lg font-bold text-slate-900">R$</span>
+                           <span className="text-5xl font-black text-brand-primary">10,00</span>
                         </div>
-                        <p className="text-slate-500 text-sm mt-3 font-medium">Pagamento único • Acesso Vitalício para baixar</p>
+                        <p className="text-slate-500 text-xs mt-2 font-medium">Acesso Vitalício ao Kit Base</p>
                      </div>
                   </div>
 
-                  <div className="space-y-4 mb-10 flex-grow">
+                  <div className="space-y-3 mb-10 flex-grow">
                      {[
                        "Kit 'Acabei, Professora!' (+100 Atividades)",
-                       "BÔNUS: +50 Atividades Extras de Português e Matemática",
-                       "BÔNUS: Planner de Aula 2024 Completo",
-                       "BÔNUS: Painéis de Sala Decorativos Prontos",
-                       "Certificado de Aluno Protagonista",
-                       "Acesso Vitalício + Todas as Atualizações futuras",
-                       "Suporte VIP via WhatsApp"
+                       "+50 Atividades Extras",
+                       "Planner de Aula Completo",
+                       "Painéis de Sala Decorativos",
+                       "Acesso Vitalício"
                      ].map((item, i) => (
-                       <div key={i} className="flex items-start gap-3 text-sm text-slate-600">
-                          <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                          <span className={i < 5 ? "font-semibold text-slate-800" : ""}>{item}</span>
+                       <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                          <span>{item}</span>
                        </div>
                      ))}
                   </div>
 
                   <a 
                     href="https://pay.cakto.com.br/bfi7tx9_872281" 
-                    className="w-full text-xl py-7 rounded-2xl font-display font-bold shadow-lg shadow-brand-primary/20 bg-brand-accent text-white hover:bg-orange-500 flex items-center justify-center transition-all hover:scale-[1.02]"
+                    className="w-full py-4 rounded-xl font-bold text-center bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shadow-sm"
                   >
-                     SIM, QUERO O KIT COMPLETO POR R$ 10
+                     ESCOLHER ESTE PLANO
+                  </a>
+                </motion.div>
+
+                {/* Pricing Card 2 - DIAMANTE VIP (Premium Requested) */}
+                <motion.div 
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="flex flex-col p-8 rounded-[40px] bg-slate-900 shadow-2xl relative border-8 border-brand-primary transition-all text-left text-white transform md:scale-105"
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-xs shadow-xl whitespace-nowrap z-20">
+                     🔥 O MAIS COMPLETO • RECOMENDADO 🔥
+                  </div>
+
+                  <div className="mb-8 border-b border-slate-700 pb-8">
+                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 fill-yellow-400 text-yellow-400" /> PLANO DIAMANTE VIP
+                     </div>
+                     <h3 className="text-2xl font-bold text-white mb-6">Acesso Total + Grupo VIP</h3>
+                     
+                     <div className="flex flex-col">
+                        <span className="text-slate-500 line-through text-sm">De R$ 97,00</span>
+                        <div className="flex items-baseline gap-1">
+                           <span className="text-lg font-bold text-white">R$</span>
+                           <span className="text-6xl font-black text-brand-primary">19,00</span>
+                        </div>
+                        <p className="text-slate-400 text-xs mt-2 font-medium">Kit Completo + Todos os Bônus + Grupo Exclusivo</p>
+                     </div>
+                  </div>
+
+                  <div className="space-y-3 mb-10 flex-grow">
+                     {[
+                       "TUDO DO PLANO DE R$ 10",
+                       "CERTIFICADOS de Motivação Escolar",
+                       "GRUPO DE MATERIAIS no WhatsApp",
+                       "Certificado 'Aluno Protagonista'",
+                       "Acesso Vitalício + Atualizações Mensais",
+                       "Suporte Prioritário VIP"
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-center gap-3 text-sm text-blue-50">
+                          <CheckCircle2 className="w-5 h-5 text-brand-primary shrink-0" />
+                          <span className={i > 0 && i < 3 ? "font-bold text-brand-primary underline decoration-brand-primary/30" : ""}>{item}</span>
+                       </div>
+                     ))}
+                  </div>
+
+                  <a 
+                    href="https://pay.cakto.com.br/n4a9iy3" 
+                    className="w-full text-lg py-5 rounded-xl font-display font-bold shadow-lg shadow-brand-primary/20 bg-brand-accent text-white hover:bg-orange-500 flex items-center justify-center transition-all"
+                  >
+                     QUERO O ACESSO VIP POR R$ 19
                   </a>
                   
                   <div className="mt-8 flex flex-col items-center gap-4">
-                     <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">PIX</div>
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">CARTÃO</div>
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">BOLETO</div>
+                     <div className="flex gap-4 opacity-50 grayscale">
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">PIX</div>
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">CARTÃO</div>
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">BOLETO</div>
                      </div>
-                     <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        <ShieldCheck className="w-4 h-4 text-emerald-500" /> Transação 100% Segura
+                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                        <ShieldCheck className="w-4 h-4 text-brand-primary" /> Transação 100% Segura
                      </div>
                   </div>
                 </motion.div>
@@ -913,9 +960,9 @@ export default function App() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { name: "Prof. Carla Silva", role: "Fundamental 1", text: "O Kit Acabei, Professora! mudou a dinâmica da minha sala. Aqueles 10 minutos de 'caos' quando os primeiros terminavam sumiram. Agora eles ficam engajados e eu consigo dar atenção para quem ainda está fazendo a tarefa principal." },
-              { name: "Luciana M.", role: "Pedagoga", text: "Me ajudou muito nos momentos em que alguns alunos terminavam antes. O material é lindo e flui super bem. Ficou tudo mais organizado na escola." },
-              { name: "Patrícia Souza", role: "Alfabetizadora", text: "Material bonito, prático e muito fácil de imprimir. Meus pequenos adoraram os desafios e pararam de correr pela sala. Recomendo muito!" }
+              { name: "Prof. Carla Silva", role: "Fundamental 1", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150", text: "O Kit Acabei, Professora! mudou a dinâmica da minha sala. Aqueles 10 minutos de 'caos' quando os primeiros terminavam sumiram. Agora eles ficam engajados e eu consigo dar atenção para quem ainda está fazendo a tarefa principal." },
+              { name: "Luciana M.", role: "Pedagoga", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150&h=150", text: "Me ajudou muito nos momentos em que alguns alunos terminavam antes. O material é lindo e flui super bem. Ficou tudo mais organizado na escola." },
+              { name: "Patrícia Souza", role: "Alfabetizadora", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150", text: "Material bonito, prático e muito fácil de imprimir. Meus pequenos adoraram os desafios e pararam de correr pela sala. Recomendo muito!" }
             ].map((d, i) => (
               <motion.div
                 key={i}
@@ -930,8 +977,13 @@ export default function App() {
                     {d.text}
                   </p>
                   <div className="flex items-center gap-4 not-italic">
-                      <div className="w-12 h-12 rounded-full bg-slate-200 border-2 border-white shadow-sm flex items-center justify-center font-bold text-slate-400">
-                        {d.name.charAt(0)}
+                      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm flex items-center justify-center bg-slate-100">
+                        <img 
+                          src={d.image} 
+                          alt={d.name} 
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                        />
                       </div>
                       <div>
                         <h5 className="font-bold text-slate-900 text-sm">{d.name}</h5>
