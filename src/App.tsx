@@ -25,7 +25,7 @@ import {
 
 // --- Components ---
 
-const Button = ({ children, className = "", primary = true, onClick, href }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void, href?: string }) => {
+const Button = ({ children, className = "", primary = true, onClick, href, target }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void, href?: string, target?: string }) => {
   const baseClasses = `relative overflow-hidden inline-flex items-center justify-center px-8 py-5 rounded-2xl font-display font-bold text-lg cursor-pointer transition-all ${
     primary 
     ? "bg-brand-accent text-white hover:bg-orange-500 shadow-xl shadow-brand-accent/20" 
@@ -72,8 +72,8 @@ const Button = ({ children, className = "", primary = true, onClick, href }: { c
         whileHover={{ scale: 1.05, y: -5 }}
         whileTap={{ scale: 0.95 }}
         className={baseClasses}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={target}
+        rel={target === "_blank" ? "noopener noreferrer" : undefined}
       >
         {content}
       </motion.a>
@@ -183,7 +183,9 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
                 "https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png",
                 "https://i.ibb.co/MD1czcdj/Chat-GPT-Image-3-de-mai-de-2026-17-30-44.png",
                 "https://i.ibb.co/BH3KSb8F/diferen-as-de-imagens.png",
-                "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png"
+                "https://i.ibb.co/v6bV8C0y/Chat-GPT-Image-3-de-mai-de-2026-17-05-15.png",
+                "https://i.ibb.co/dJBQncyd/Chat-GPT-Image-5-de-mai-de-2026-16-05-43.png",
+                "https://i.ibb.co/0W9xW0j/Chat-GPT-Image-5-de-mai-de-2026-16-07-28.png"
               ].map((imgSrc, imgIdx) => (
                 <div 
                   key={`${listIdx}-${imgIdx}`} 
@@ -224,7 +226,9 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
                 "https://i.ibb.co/QFtgvKdB/TABUADAS-INFANTIS-PARA-FAZER-1.png",
                 "https://i.ibb.co/2118g1J7/TABUADAS-INFANTIS-PARA-FAZER.png",
                 "https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png",
-                "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png"
+                "https://i.ibb.co/Rp70nv2y/Chat-GPT-Image-3-de-mai-de-2026-17-06-28.png",
+                "https://i.ibb.co/S7ctc5Xs/Chat-GPT-Image-5-de-mai-de-2026-14-45-59-1.png",
+                "https://i.ibb.co/nsHNPntc/Chat-GPT-Image-5-de-mai-de-2026-12-25-43.png"
               ].map((imgSrc, imgIdx) => (
                 <div 
                   key={`${listIdx}-${imgIdx}`} 
@@ -251,6 +255,15 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
 // --- Main App ---
 
 export default function App() {
+  React.useEffect(() => {
+    // Tracking is handled automatically by UTMify scripts in index.html
+    // This console log helps verify script interaction during development
+    const win = window as any;
+    if (win.pixelId) {
+      console.log(`UTMify Pixel active with ID: ${win.pixelId}`);
+    }
+  }, []);
+
   const scrollToCheckout = () => {
     const element = document.getElementById('checkout-section');
     if (element) {
@@ -741,65 +754,116 @@ export default function App() {
               Tenha acesso imediato a um material pronto, organizado e fácil de aplicar. Escolha o plano que melhor atende sua sala de aula.
             </p>
 
-            <div className="max-w-xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                
-               {/* Pricing Card - Ouro (Full Access) */}
+               {/* Pricing Card 1 - Ouro (Economic) */}
                <motion.div 
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="flex flex-col p-8 md:p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all text-left"
+                  initial={{ x: -20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -5 }}
+                  className="flex flex-col p-8 rounded-[40px] bg-white shadow-xl relative border-2 border-slate-100 transition-all text-left"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold text-sm shadow-xl whitespace-nowrap z-20">
-                     ✨ OFERTA EXCLUSIVA: ACESSO TOTAL ✨
-                  </div>
-
-                  <div className="mb-8 border-b border-slate-100 pb-8 text-center md:text-left">
-                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1 flex items-center justify-center md:justify-start gap-2">
-                        <Sparkles className="w-4 h-4 fill-yellow-400 text-yellow-400" /> PLANO OURO (ACESSO COMPLETO)
-                     </div>
-                     <h3 className="text-2xl font-bold text-slate-900 mb-6 italic">Quanto vale ter sua rotina pronta?</h3>
+                  <div className="mb-8 border-b border-slate-100 pb-8">
+                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1">PLANO OURO</div>
+                     <h3 className="text-xl font-bold text-slate-900 mb-6 italic">Kit Essencial</h3>
                      
-                     <div className="flex flex-col items-center md:items-start">
-                        <span className="text-slate-400 line-through text-lg">De R$ 67,00</span>
+                     <div className="flex flex-col">
+                        <span className="text-slate-400 line-through text-sm">De R$ 37,00</span>
                         <div className="flex items-baseline gap-1">
-                           <span className="text-xl font-bold text-slate-900">R$</span>
-                           <span className="text-7xl font-black text-brand-primary">10,00</span>
+                           <span className="text-lg font-bold text-slate-900">R$</span>
+                           <span className="text-5xl font-black text-brand-primary">10,00</span>
                         </div>
-                        <p className="text-slate-500 text-sm mt-3 font-medium">Pagamento único • Acesso Vitalício</p>
+                        <p className="text-slate-500 text-xs mt-2 font-medium">Acesso Vitalício ao Kit Base</p>
                      </div>
                   </div>
 
-                  <div className="space-y-4 mb-10 flex-grow">
+                  <div className="space-y-3 mb-10 flex-grow">
                      {[
                        "Kit 'Acabei, Professora!' (+100 Atividades)",
-                       "+50 Atividades Extras + Planner Completo",
-                       "BÔNUS: Kit Escrita Guiada p/ Alunos",
+                       "+50 Atividades Extras",
                        "BÔNUS: Bobbie Goods p/ colorir",
-                       "CERTIFICADOS de Motivação Escolar",
-                       "GRUPO DE MATERIAIS no WhatsApp",
-                       "Acesso Vitalício + Todas as Atualizações"
+                       "Acesso Vitalício"
                      ].map((item, i) => (
-                       <div key={i} className="flex items-start gap-3 text-sm text-slate-600">
-                          <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                          <span className={i > 1 && i < 6 ? "font-bold text-slate-800" : ""}>{item}</span>
+                       <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                          <span>{item}</span>
                        </div>
                      ))}
                   </div>
 
                   <Button 
                     href="https://pay.cakto.com.br/bfi7tx9_872281" 
-                    className="w-full text-xl py-7 shadow-lg shadow-brand-primary/20"
+                    primary={false}
+                    className="w-full py-4 rounded-xl"
                   >
-                     QUERO O ACESSO COMPLETO POR R$ 10
+                     ESCOLHER ESTE PLANO
+                  </Button>
+                </motion.div>
+
+                {/* Pricing Card 2 - DIAMANTE VIP (Premium) */}
+                <motion.div 
+                  initial={{ x: 20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                  className="flex flex-col p-8 rounded-[40px] bg-slate-900 shadow-2xl relative border-8 border-brand-primary transition-all text-left text-white transform md:scale-105"
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-xs shadow-xl whitespace-nowrap z-20">
+                     🔥 O MAIS COMPLETO • RECOMENDADO 🔥
+                  </div>
+
+                  <div className="mb-8 border-b border-slate-700 pb-8">
+                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1 flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 fill-yellow-400 text-yellow-400" /> PLANO DIAMANTE VIP
+                     </div>
+                     <h3 className="text-2xl font-bold text-white mb-6">Acesso Total + Grupo VIP</h3>
+                     
+                     <div className="flex flex-col">
+                        <span className="text-slate-500 line-through text-sm">De R$ 97,00</span>
+                        <div className="flex items-baseline gap-1">
+                           <span className="text-lg font-bold text-white">R$</span>
+                           <span className="text-6xl font-black text-brand-primary">19,00</span>
+                        </div>
+                        <p className="text-slate-400 text-xs mt-2 font-medium">Kit Completo + Todos os Bônus + Grupo Exclusivo</p>
+                     </div>
+                  </div>
+
+                  <div className="space-y-3 mb-10 flex-grow">
+                     {[
+                       "TUDO DO PLANO DE R$ 10",
+                       "Planner de Aula Completo",
+                       "Kit Escrita Guiada p/ Alunos",
+                       "CERTIFICADOS de Motivação Escolar",
+                       "GRUPO DE MATERIAIS no WhatsApp",
+                       "Certificado 'Aluno Protagonista'",
+                       "Acesso Vitalício + Atualizações Mensais",
+                       "Suporte Prioritário VIP"
+                     ].map((item, i) => (
+                       <div key={i} className="flex items-center gap-3 text-sm text-blue-50">
+                          <CheckCircle2 className="w-5 h-5 text-brand-primary shrink-0" />
+                          <span className={i > 0 && i < 3 ? "font-bold text-brand-primary underline decoration-brand-primary/30" : ""}>{item}</span>
+                       </div>
+                     ))}
+                  </div>
+
+                  <Button 
+                    href="https://pay.cakto.com.br/n4a9iy3" 
+                    className="w-full text-xl py-7"
+                  >
+                     QUERO O ACESSO VIP POR R$ 19
                   </Button>
                   
                   <div className="mt-8 flex flex-col items-center gap-4">
-                     <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">PIX</div>
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">CARTÃO</div>
-                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">BOLETO</div>
+                     <div className="flex gap-4 opacity-50 grayscale">
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">PIX</div>
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">CARTÃO</div>
+                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">BOLETO</div>
                      </div>
-                     <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        <ShieldCheck className="w-4 h-4 text-emerald-500" /> Transação 100% Segura
+                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                        <ShieldCheck className="w-4 h-4 text-brand-primary" /> Transação 100% Segura
                      </div>
                   </div>
                 </motion.div>
