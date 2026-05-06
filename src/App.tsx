@@ -241,10 +241,12 @@ export default function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const index = Math.round(scrollLeft / clientWidth);
-      setActiveDot(index);
+    if (scrollRef.current && scrollRef.current.children.length > 0) {
+      const { scrollLeft } = scrollRef.current;
+      const firstChild = scrollRef.current.children[0] as HTMLElement;
+      const itemWidth = firstChild.offsetWidth + 16; // 16 corresponds to gap-4
+      const index = Math.round(scrollLeft / itemWidth);
+      setActiveDot(Math.min(index, 2));
     }
   };
 
@@ -1016,7 +1018,7 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  className="min-w-[85vw] md:min-w-[420px] aspect-[3/4] rounded-3xl overflow-hidden shadow-xl snap-center flex-shrink-0"
+                  className="min-w-[260px] md:min-w-[350px] aspect-[3/4] rounded-2xl overflow-hidden shadow-lg snap-center flex-shrink-0"
                 >
                   <img 
                     src={img} 
