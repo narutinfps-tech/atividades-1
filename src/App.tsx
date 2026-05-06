@@ -852,117 +852,69 @@ export default function App() {
               Tenha acesso imediato a um material pronto, organizado e fácil de aplicar. Escolha o plano que melhor atende sua sala de aula.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="max-w-xl mx-auto">
                
-               {/* Pricing Card 1 - Ouro (Economic) */}
+               {/* Pricing Card - Ouro (Full Access) */}
                <motion.div 
-                  initial={{ x: -20, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4 }}
-                  whileHover={{ y: -5 }}
-                  className="flex flex-col p-8 rounded-[40px] bg-white shadow-xl relative border-2 border-slate-100 transition-all text-left"
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="flex flex-col p-8 md:p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all text-left"
                 >
-                  <div className="mb-8 border-b border-slate-100 pb-8">
-                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1">PLANO OURO</div>
-                     <h3 className="text-xl font-bold text-slate-900 mb-6 italic">Kit Essencial</h3>
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold text-sm shadow-xl whitespace-nowrap z-20">
+                     ✨ OFERTA EXCLUSIVA: ACESSO TOTAL ✨
+                  </div>
+
+                  <div className="mb-8 border-b border-slate-100 pb-8 text-center md:text-left">
+                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1 flex items-center justify-center md:justify-start gap-2">
+                        <Sparkles className="w-4 h-4 fill-yellow-400 text-yellow-400" /> PLANO OURO (ACESSO COMPLETO)
+                     </div>
+                     <h3 className="text-2xl font-bold text-slate-900 mb-6 italic">Quanto vale ter sua rotina pronta?</h3>
                      
-                     <div className="flex flex-col">
-                        <span className="text-slate-400 line-through text-sm">De R$ 37,00</span>
+                     <div className="flex flex-col items-center md:items-start">
+                        <span className="text-slate-400 line-through text-lg">De R$ 67,00</span>
                         <div className="flex items-baseline gap-1">
-                           <span className="text-lg font-bold text-slate-900">R$</span>
-                           <span className="text-5xl font-black text-brand-primary">10,00</span>
+                           <span className="text-xl font-bold text-slate-900">R$</span>
+                           <span className="text-7xl font-black text-brand-primary">10,00</span>
                         </div>
-                        <p className="text-slate-500 text-xs mt-2 font-medium">Acesso Vitalício ao Kit Base</p>
+                        <p className="text-slate-500 text-sm mt-3 font-medium">Pagamento único • Acesso Vitalício</p>
                      </div>
                   </div>
 
-                  <div className="space-y-3 mb-10 flex-grow">
+                  <div className="space-y-4 mb-10 flex-grow">
                      {[
                        "Kit 'Acabei, Professora!' (+100 Atividades)",
-                       "+50 Atividades Extras",
-                       "Planner de Aula Completo",
-                       "BÔNUS: Kit Escrita Guiada",
-                       "BÔNUS: Bobbie Goods p/ colorir",
-                       "Acesso Vitalício"
-                     ].map((item, i) => (
-                       <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                          <span>{item}</span>
-                       </div>
-                     ))}
-                  </div>
-
-                  <a 
-                    href="https://pay.cakto.com.br/bfi7tx9_872281" 
-                    className="w-full py-4 rounded-xl font-bold text-center bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all shadow-sm"
-                  >
-                     ESCOLHER ESTE PLANO
-                  </a>
-                </motion.div>
-
-                {/* Pricing Card 2 - DIAMANTE VIP (Premium Requested) */}
-                <motion.div 
-                  initial={{ x: 20, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  className="flex flex-col p-8 rounded-[40px] bg-slate-900 shadow-2xl relative border-8 border-brand-primary transition-all text-left text-white transform md:scale-105"
-                >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full font-bold text-xs shadow-xl whitespace-nowrap z-20">
-                     🔥 O MAIS COMPLETO • RECOMENDADO 🔥
-                  </div>
-
-                  <div className="mb-8 border-b border-slate-700 pb-8">
-                     <div className="text-brand-primary font-bold text-xs uppercase tracking-widest mb-1 flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 fill-yellow-400 text-yellow-400" /> PLANO DIAMANTE VIP
-                     </div>
-                     <h3 className="text-2xl font-bold text-white mb-6">Acesso Total + Grupo VIP</h3>
-                     
-                     <div className="flex flex-col">
-                        <span className="text-slate-500 line-through text-sm">De R$ 97,00</span>
-                        <div className="flex items-baseline gap-1">
-                           <span className="text-lg font-bold text-white">R$</span>
-                           <span className="text-6xl font-black text-brand-primary">19,00</span>
-                        </div>
-                        <p className="text-slate-400 text-xs mt-2 font-medium">Kit Completo + Todos os Bônus + Grupo Exclusivo</p>
-                     </div>
-                  </div>
-
-                  <div className="space-y-3 mb-10 flex-grow">
-                     {[
-                       "TUDO DO PLANO DE R$ 10",
-                       "Kit Escrita Guiada p/ Alunos",
+                       "+50 Atividades Extras + Planner Completo",
+                       "BÔNUS: Kit Escrita Guiada p/ Alunos",
                        "BÔNUS: Bobbie Goods p/ colorir",
                        "CERTIFICADOS de Motivação Escolar",
                        "GRUPO DE MATERIAIS no WhatsApp",
-                       "Certificado 'Aluno Protagonista'",
-                       "Acesso Vitalício + Atualizações Mensais",
-                       "Suporte Prioritário VIP"
+                       "Acesso Vitalício + Todas as Atualizações"
                      ].map((item, i) => (
-                       <div key={i} className="flex items-center gap-3 text-sm text-blue-50">
-                          <CheckCircle2 className="w-5 h-5 text-brand-primary shrink-0" />
-                          <span className={i > 0 && i < 3 ? "font-bold text-brand-primary underline decoration-brand-primary/30" : ""}>{item}</span>
+                       <div key={i} className="flex items-start gap-3 text-sm text-slate-600">
+                          <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
+                          <span className={i > 1 && i < 6 ? "font-bold text-slate-800" : ""}>{item}</span>
                        </div>
                      ))}
                   </div>
 
                   <Button 
-                    href="https://pay.cakto.com.br/n4a9iy3" 
-                    className="w-full text-xl py-7"
+                    href="https://pay.cakto.com.br/bfi7tx9_872281" 
+                    className="w-full text-xl py-7 shadow-lg shadow-brand-primary/20"
                   >
-                     QUERO O ACESSO VIP POR R$ 19
+                     QUERO O ACESSO COMPLETO POR R$ 10
                   </Button>
                   
                   <div className="mt-8 flex flex-col items-center gap-4">
-                     <div className="flex gap-4 opacity-50 grayscale">
-                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">PIX</div>
-                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">CARTÃO</div>
-                        <div className="px-2 py-1 bg-white/10 rounded font-bold text-[10px]">BOLETO</div>
+                     <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all">
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">PIX</div>
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">CARTÃO</div>
+                        <div className="px-2 py-1 bg-slate-200 rounded font-bold text-[10px]">BOLETO</div>
                      </div>
-                     <div className="flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-                        <ShieldCheck className="w-4 h-4 text-brand-primary" /> Transação 100% Segura
+                     <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                        <ShieldCheck className="w-4 h-4 text-emerald-500" /> Transação 100% Segura
                      </div>
                   </div>
                 </motion.div>
