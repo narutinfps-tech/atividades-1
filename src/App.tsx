@@ -237,20 +237,6 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
 // --- Main App ---
 
 export default function App() {
-  const [activeDot, setActiveDot] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const handleScroll = () => {
-    if (scrollRef.current && scrollRef.current.children.length > 0) {
-      const { scrollLeft } = scrollRef.current;
-      const firstChild = scrollRef.current.children[0] as HTMLElement;
-      // Use clientWidth of the container for more reliable mobile indexing
-      const containerWidth = scrollRef.current.clientWidth;
-      const index = Math.round(scrollLeft / (firstChild.offsetWidth + 16));
-      setActiveDot(Math.min(index, 2));
-    }
-  };
-
   const scrollToCheckout = () => {
     const element = document.getElementById('checkout-section');
     if (element) {
@@ -999,11 +985,9 @@ export default function App() {
           </motion.div>
 
           {/* Testimonial Image Carousel */}
-          <div className="max-w-5xl mx-auto mb-16 relative">
+          <div className="max-w-4xl mx-auto mb-12 relative px-4">
             <div 
-              ref={scrollRef}
-              onScroll={handleScroll}
-              className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide no-scrollbar"
+              className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar"
               style={{
                 msOverflowStyle: 'none',
                 scrollbarWidth: 'none'
@@ -1016,10 +1000,10 @@ export default function App() {
               ].map((img, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="min-w-[150px] md:min-w-[280px] aspect-[4/5] rounded-xl overflow-hidden shadow-md snap-center flex-shrink-0"
+                  className="min-w-[90px] md:min-w-[180px] aspect-[4/5] rounded-md overflow-hidden shadow-sm snap-center flex-shrink-0 border border-slate-100"
                 >
                   <img 
                     src={img} 
@@ -1028,20 +1012,6 @@ export default function App() {
                     referrerPolicy="no-referrer"
                   />
                 </motion.div>
-              ))}
-            </div>
-            
-            {/* Pagination Dots */}
-            <div className="flex justify-center gap-3 mt-2">
-              {[0, 1, 2].map((dot) => (
-                <motion.div 
-                  key={dot} 
-                  animate={{ 
-                    scale: activeDot === dot ? 1.5 : 1,
-                    backgroundColor: activeDot === dot ? "#3B82F6" : "#cbd5e1"
-                  }}
-                  className="w-2.5 h-2.5 rounded-full transition-colors" 
-                />
               ))}
             </div>
           </div>
