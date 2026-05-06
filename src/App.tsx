@@ -26,55 +26,72 @@ import {
 // --- Components ---
 
 const Button = ({ children, className = "", primary = true, onClick, href }: { children: React.ReactNode, className?: string, primary?: boolean, onClick?: () => void, href?: string }) => {
-  const Component = href ? motion.a : motion.button;
-  
-  return (
-    <Component
-      href={href}
-      initial={{ scale: 1 }}
-      animate={{ 
-        scale: [1, 1.02, 1],
-        boxShadow: primary 
-          ? ["0 10px 15px -3px rgba(249, 115, 22, 0.2)", "0 20px 25px -5px rgba(249, 115, 22, 0.4)", "0 10px 15px -3px rgba(249, 115, 22, 0.2)"]
-          : ["0 4px 6px -1px rgba(0, 0, 0, 0.1)", "0 10px 15px -3px rgba(0, 0, 0, 0.1)", "0 4px 6px -1px rgba(0, 0, 0, 0.1)"]
-      }}
-      transition={{ 
-        duration: 2, 
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}
-      whileHover={{ 
-        scale: 1.05, 
-        y: -5,
-        rotate: [0, -1, 1, 0],
-        transition: { duration: 0.2 }
-      }}
-      whileTap={{ scale: 0.95, y: 0 }}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}
-      className={`relative overflow-hidden inline-flex items-center justify-center px-8 py-5 rounded-2xl font-display font-bold text-lg cursor-pointer transition-all ${
-        primary 
-        ? "bg-brand-accent text-white hover:bg-orange-500" 
-        : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50"
-      } ${className}`}
-    >
+  const baseClasses = `relative overflow-hidden inline-flex items-center justify-center px-8 py-5 rounded-2xl font-display font-bold text-lg cursor-pointer transition-all ${
+    primary 
+    ? "bg-brand-accent text-white hover:bg-orange-500 shadow-xl shadow-brand-accent/20" 
+    : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50 shadow-lg"
+  } ${className}`;
+
+  const motionProps = {
+    whileHover: { 
+      scale: 1.05, 
+      y: -5,
+      transition: { duration: 0.2 }
+    },
+    whileTap: { scale: 0.95 },
+  };
+
+  const content = (
+    <>
       <motion.div
-        className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+        className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
+        initial={{ x: "-100%" }}
         animate={{
-          translateX: ["100%", "-100%"],
+          x: ["100%", "-100%"],
         }}
         transition={{
-          duration: 2.5,
+          duration: 3,
           repeat: Infinity,
           ease: "linear",
-          repeatDelay: 1
+          repeatDelay: 2
         }}
       />
       <span className="relative z-10">{children}</span>
-    </Component>
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        className={baseClasses}
+        {...motionProps}
+        onClick={(e) => {
+          if (onClick) {
+            e.preventDefault();
+            onClick();
+          }
+        }}
+      >
+        {content}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button
+      type="button"
+      className={baseClasses}
+      {...motionProps}
+      onClick={(e) => {
+        if (onClick) {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+    >
+      {content}
+    </motion.button>
   );
 };
 
@@ -111,7 +128,10 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
         whileHover={{ x: 5 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(!isOpen);
+        }}
         className="w-full py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
       >
         <span className="font-display font-semibold text-lg text-slate-800">{question}</span>
@@ -233,10 +253,6 @@ export default function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
-  };
-
-  const handleCheckout = (url = 'https://pay.cakto.com.br/bfi7tx9_872281') => {
-    window.location.href = url;
   };
 
   return (
