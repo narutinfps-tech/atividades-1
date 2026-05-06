@@ -133,17 +133,8 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
 const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: string }) => (
   <section className="py-20 bg-slate-50 overflow-hidden border-y border-slate-100">
     <div className="container mx-auto px-4 mb-10 text-center">
-       {title && <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</motion.h2>}
-       {subtitle && <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="text-slate-500">{subtitle}</motion.p>}
+       {title && <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</h2>}
+       {subtitle && <p className="text-slate-500">{subtitle}</p>}
     </div>
     
     <div className="space-y-10">
@@ -255,50 +246,29 @@ export default function App() {
         <div className="absolute top-0 left-0 w-full h-full opacity-40 school-pattern pointer-events-none" />
         
         <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-primary font-semibold text-sm mb-8 shadow-sm border border-blue-100"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-primary font-semibold text-sm mb-8 shadow-sm border border-blue-100">
             <Sparkles className="w-4 h-4" />
             <span>Kit Digital Exclusivo</span>
-          </motion.div>
+          </div>
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.05 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 drop-shadow-sm"
-          >
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 drop-shadow-sm">
             Seu aluno terminou antes? <br />
             <span className="text-brand-primary">Agora você já sabe o que entregar.</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-8 leading-relaxed"
-          >
+          <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-8 leading-relaxed">
             O kit <strong className="text-slate-900">“Acabei, Professora!”</strong> reúne atividades rápidas, educativas e prontas para imprimir, criadas para manter os alunos ocupados e aprendendo enquanto a turma termina a tarefa principal.
-          </motion.p>
+          </p>
 
           {/* Compact Hero Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="w-full max-w-2xl relative flex items-center justify-center px-4 mb-16"
-          >
+          <div className="w-full max-w-2xl relative flex items-center justify-center px-4 mb-16">
             {/* Background Glow */}
             <div className="absolute inset-0 bg-brand-primary/10 blur-3xl rounded-full" />
             
             <div className="relative w-full aspect-[16/9] flex items-center justify-center">
               {/* Back Page 1 */}
               <motion.div 
-                initial={{ rotate: -10, x: -60, opacity: 0 }}
-                animate={{ rotate: -15, x: -80, opacity: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 400 }}
+                initial={{ rotate: -15, x: -80 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/4wc6jhsf/Chat-GPT-Image-3-de-mai-de-2026-17-15-13.png" alt="Preview 1" className="w-full h-full object-cover" />
@@ -306,9 +276,7 @@ export default function App() {
 
               {/* Back Page 2 */}
               <motion.div 
-                initial={{ rotate: 10, x: 60, opacity: 0 }}
-                animate={{ rotate: 15, x: 80, opacity: 1 }}
-                transition={{ delay: 0.4, type: "spring", stiffness: 400 }}
+                initial={{ rotate: 15, x: 80 }}
                 className="absolute w-1/2 aspect-[3/4] bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden"
               >
                  <img src="https://i.ibb.co/b500B8Cr/Chat-GPT-Image-3-de-mai-de-2026-17-22-08.png" alt="Preview 2" className="w-full h-full object-cover" />
@@ -346,13 +314,9 @@ export default function App() {
                  </div>
               </motion.div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-          >
+          <div>
             <Button onClick={() => scrollToCheckout()} className="mb-6">
               QUERO MEU KIT AGORA
             </Button>
@@ -361,7 +325,7 @@ export default function App() {
               <span className="flex items-center gap-1"><FileText className="w-4 h-4" /> Produto digital (PDF)</span>
               <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para imprimir</span>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Decorative elements */}
@@ -378,28 +342,16 @@ export default function App() {
 
       {/* 2. SEÇÃO DE IDENTIFICAÇÃO DA DOR */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="container mx-auto px-4 text-center">
             <SectionTitle 
               subtitle="Toda professora do Ensino Fundamental 1 conhece esse ciclo desgastante."
             >
               Você já passou por isso em sala?
             </SectionTitle>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="space-y-6"
-            >
+            <div className="space-y-6">
               <p className="text-lg text-slate-600 leading-relaxed">
                 Você prepara a atividade, começa a orientar a turma e, poucos minutos depois, um aluno levanta a mão e diz: <span className="italic font-medium text-brand-primary">“Professora, já terminei.”</span>
               </p>
@@ -416,19 +368,15 @@ export default function App() {
                   "Sobrecarga tentando atender a todos ao mesmo tempo",
                   "O tempo ocioso vira bagunça e interrupções"
                 ].map((item, idx) => (
-                  <motion.li 
+                  <li 
                     key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
                     className="flex items-start gap-3"
                   >
                     <div className="mt-1 w-5 h-5 rounded-full bg-red-100 text-red-500 flex items-center justify-center shrink-0">
                       <span className="text-xs font-bold">✕</span>
                     </div>
                     <span className="text-slate-700 font-medium">{item}</span>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
@@ -437,20 +385,12 @@ export default function App() {
                   Foi pensando exatamente nesse momento que nasceu o “Acabei, Professora!”.
                 </p>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative aspect-square flex items-center justify-center p-12"
-            >
+            <div className="relative aspect-square flex items-center justify-center p-12">
               {/* Stacked Images Effect */}
               <motion.div 
-                initial={{ rotate: -12, x: -20 }}
-                whileInView={{ rotate: -15, x: -40 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 400 }}
+                initial={{ rotate: -15, x: -40 }}
                 className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
               >
                 <img 
@@ -462,9 +402,7 @@ export default function App() {
               </motion.div>
               
               <motion.div 
-                initial={{ rotate: 12, x: 20 }}
-                whileInView={{ rotate: 15, x: 40 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 400, delay: 0.1 }}
+                initial={{ rotate: 15, x: 40 }}
                 className="absolute w-[80%] h-auto rounded-2xl shadow-2xl border-4 border-white overflow-hidden transform"
               >
                 <img 
@@ -476,9 +414,7 @@ export default function App() {
               </motion.div>
 
               <motion.div 
-                initial={{ y: 30, rotate: 0 }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 0.5, type: "spring", stiffness: 400, delay: 0.1 }}
+                initial={{ y: 0 }}
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="relative w-full h-auto rounded-3xl shadow-2xl border-8 border-white overflow-hidden z-10 transition-transform"
               >
@@ -494,26 +430,16 @@ export default function App() {
                   </p>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </div>
       </section>
 
       {/* 3. SEÇÃO DA SOLUÇÃO */}
       <section className="py-24 bg-brand-blue/10 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="container mx-auto px-4 mt-12">
             <SectionTitle>
               Uma pasta pronta para salvar sua rotina.
             </SectionTitle>
-          </motion.div>
-
-
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -528,10 +454,7 @@ export default function App() {
             ].map((benefit, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
+                whileHover={{ y: -5, scale: 1.02 }}
               >
                 <Card className="flex flex-col items-center text-center h-full">
                   <div className="w-12 h-12 rounded-2xl bg-brand-blue flex items-center justify-center text-brand-primary mb-4">
@@ -549,14 +472,7 @@ export default function App() {
       {/* 4. SEÇÃO “O QUE VEM NO KIT” */}
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
-          </motion.div>
+          <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -605,10 +521,6 @@ export default function App() {
             ].map((item, i) => (
               <motion.div 
                 key={i} 
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
                 whileHover={{ y: -8, scale: 1.05, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 className="group p-8 rounded-[40px] border border-slate-100 bg-white shadow-sm transition-all flex flex-col items-center text-center"
@@ -625,16 +537,11 @@ export default function App() {
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center mt-16"
-          >
+          <div className="flex flex-col items-center mt-16">
             <Button onClick={() => scrollToCheckout()} className="bg-brand-primary text-white shadow-brand-primary/25">
               QUERO RECEBER TUDO ISSO AGORA
             </Button>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -649,13 +556,7 @@ export default function App() {
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.5 }}
-               className="w-full"
-             >
+            <div className="w-full">
                 <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-tight text-center">
                   Esse kit é ideal para você se…
                 </h2>
@@ -671,10 +572,6 @@ export default function App() {
                  ].map((item, i) => (
                    <motion.div 
                     key={i} 
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
                     whileHover={{ x: 8, scale: 1.02, backgroundColor: "rgba(187, 247, 208, 0.7)" }}
                     whileTap={{ scale: 0.98 }}
                     className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint transition-colors cursor-default"
@@ -684,24 +581,17 @@ export default function App() {
                    </motion.div>
                  ))}
                </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 7. SEÇÃO “COMO USAR” */}
       <section className="py-24 bg-brand-yellow/10 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="container mx-auto px-4 mt-8">
             <SectionTitle subtitle="Implementação rápida que não exige esforço adicional.">
               Como usar em sala de aula?
             </SectionTitle>
-          </motion.div>
 
           <div className="grid md:grid-cols-5 gap-8 max-w-6xl mx-auto items-start">
             {[
@@ -713,10 +603,6 @@ export default function App() {
             ].map((s, i) => (
               <motion.div 
                 key={i} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.08 }}
                 whileHover={{ y: -10, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex flex-col items-center text-center relative group"
@@ -729,33 +615,20 @@ export default function App() {
             ))}
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="mt-16 text-center"
-          >
+          <div className="mt-16 text-center">
              <p className="text-2xl font-display font-medium text-brand-primary">
                 Simples, prático e pronto para transformar sua rotina.
              </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* 8. SEÇÃO DE BÔNUS */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="container mx-auto px-4 mt-8">
             <SectionTitle subtitle="Presentes exclusivos para quem garantir o kit hoje.">
               Comprando hoje, você também recebe bônus especiais.
             </SectionTitle>
-          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
@@ -772,6 +645,12 @@ export default function App() {
                 img: "https://i.ibb.co/gLqFWrDt/Chat-GPT-Image-6-de-mai-de-2026-10-53-33.png"
               },
               { 
+                title: "Bobbie Goods para Colorir", 
+                desc: "Lindos desenhos estilo Bobbie Goods para despertar a criatividade e o foco dos seus alunos após as atividades.", 
+                icon: <Sparkles className="w-5 h-5" />,
+                img: "https://i.ibb.co/8nYBKTx8/Chat-GPT-Image-6-de-mai-de-2026-14-57-38.png"
+              },
+              { 
                 title: "Controle de Missões", 
                 desc: "Folha para acompanhar o progresso de cada aluno de forma lúdica.", 
                 icon: <ClipboardCheck className="w-5 h-5" />,
@@ -780,12 +659,8 @@ export default function App() {
             ].map((bonus, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 whileHover={{ y: -10, scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="p-8 rounded-[2rem] bg-white border border-slate-100 flex flex-col items-center text-center shadow-xl hover:shadow-2xl transition-all group overflow-hidden"
               >
                 {/* Custom Mockup Visual */}
@@ -825,17 +700,12 @@ export default function App() {
           </div>
 
           {/* New Strategic CTA Button */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center mt-16"
-          >
+          <div className="flex flex-col items-center mt-16">
             <Button onClick={() => scrollToCheckout()} className="mb-4">
               QUERO TODOS OS BÔNUS + MEU KIT
             </Button>
             <p className="text-xs text-slate-400 font-medium">Acesso imediato e vitalício ao material</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -856,10 +726,6 @@ export default function App() {
                
                {/* Pricing Card - Ouro (Full Access) */}
                <motion.div 
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                   className="flex flex-col p-8 md:p-10 rounded-[50px] bg-white shadow-2xl relative border-8 border-brand-primary/10 transition-all text-left"
                 >
@@ -925,16 +791,10 @@ export default function App() {
 
       {/* 12. SEÇÃO DE DEPOIMENTOS */}
       <section className="py-24 bg-brand-mint/20 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+        <div className="container mx-auto px-4 mt-8">
             <SectionTitle subtitle="O que outras educadoras estão dizendo.">
               Comunidade de Professoras
             </SectionTitle>
-          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
@@ -944,10 +804,7 @@ export default function App() {
             ].map((d, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                whileHover={{ y: -5, scale: 1.02 }}
               >
                 <Card className="relative pt-12 italic text-slate-700 bg-white/80 backdrop-blur h-full">
                   <div className="absolute top-8 left-8 text-6xl text-brand-mint select-none pointer-events-none">“</div>
@@ -983,12 +840,8 @@ export default function App() {
 
       {/* 11. SEÇÃO DE GARANTIA */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 mt-8">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
             whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
             className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
           >
@@ -1016,13 +869,8 @@ export default function App() {
 
       {/* 13. SEÇÃO DE FAQ */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
+        <div className="container mx-auto px-4 mt-8">
+          <div className="max-w-3xl mx-auto">
             <SectionTitle>Dúvidas frequentes</SectionTitle>
             <div className="mt-12">
               {[
@@ -1036,19 +884,14 @@ export default function App() {
                 <FAQItem key={i} question={faq.q} answer={faq.a} />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* 14. SEÇÃO FINAL DE CTA */}
       <section className="py-32 bg-brand-yellow overflow-hidden relative text-center">
-        <div className="container mx-auto px-4 relative z-10">
-           <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-           >
+        <div className="container mx-auto px-4 relative z-10 mt-8">
+           <div>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 max-w-4xl mx-auto leading-tight">
                 Na próxima vez que um aluno disser “professora, já terminei”, você não vai precisar improvisar.
               </h2>
@@ -1063,7 +906,7 @@ export default function App() {
                   <span className="flex items-center gap-1"><Printer className="w-4 h-4" /> Pronto para Imprimir</span>
                   <span className="flex items-center gap-1"><Heart className="w-4 h-4" /> Amado por +1000 Professoras</span>
               </div>
-           </motion.div>
+           </div>
         </div>
       </section>
 
