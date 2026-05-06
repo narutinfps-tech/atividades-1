@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { motion } from 'motion/react';
 import { 
   CheckCircle2, 
@@ -983,38 +983,6 @@ export default function App() {
               Comunidade de Professoras
             </SectionTitle>
           </motion.div>
-
-          {/* Testimonial Image Carousel */}
-          <div className="max-w-4xl mx-auto mb-12 relative px-4">
-            <div 
-              className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory no-scrollbar"
-              style={{
-                msOverflowStyle: 'none',
-                scrollbarWidth: 'none'
-              }}
-            >
-              {[
-                "https://i.ibb.co/ycmLGrrf/04daa554-7a3d-41ab-9e0f-71bf036cc8d2.png",
-                "https://i.ibb.co/6RLLg0TQ/Chat-GPT-Image-6-de-mai-de-2026-11-16-34.png",
-                "https://i.ibb.co/fYhQt6Nj/Chat-GPT-Image-6-de-mai-de-2026-11-25-04.png",
-              ].map((img, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="min-w-[90px] md:min-w-[180px] aspect-[4/5] rounded-md overflow-hidden shadow-sm snap-center flex-shrink-0 border border-slate-100"
-                >
-                  <img 
-                    src={img} 
-                    alt={`Feedback ${i + 1}`} 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
