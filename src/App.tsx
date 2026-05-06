@@ -19,7 +19,8 @@ import {
   FileBadge,
   Sparkles,
   ClipboardCheck,
-  Check
+  Check,
+  Pencil
 } from 'lucide-react';
 
 // --- Components ---
@@ -30,8 +31,12 @@ const Button = ({ children, className = "", primary = true, onClick, href }: { c
   return (
     <Component
       href={href}
+      initial={{ scale: 1 }}
       animate={{ 
-        scale: [1, 1.03, 1],
+        scale: [1, 1.02, 1],
+        boxShadow: primary 
+          ? ["0 10px 15px -3px rgba(249, 115, 22, 0.2)", "0 20px 25px -5px rgba(249, 115, 22, 0.4)", "0 10px 15px -3px rgba(249, 115, 22, 0.2)"]
+          : ["0 4px 6px -1px rgba(0, 0, 0, 0.1)", "0 10px 15px -3px rgba(0, 0, 0, 0.1)", "0 4px 6px -1px rgba(0, 0, 0, 0.1)"]
       }}
       transition={{ 
         duration: 2, 
@@ -41,22 +46,34 @@ const Button = ({ children, className = "", primary = true, onClick, href }: { c
       whileHover={{ 
         scale: 1.05, 
         y: -5,
-        rotate: 1, 
-        boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.3)" 
+        rotate: [0, -1, 1, 0],
+        transition: { duration: 0.2 }
       }}
       whileTap={{ scale: 0.95, y: 0 }}
-      onClick={(e) => {
+      onClick={() => {
         if (onClick) {
           onClick();
         }
       }}
-      className={`inline-flex items-center justify-center px-8 py-4 rounded-2xl font-display font-bold text-lg shadow-lg cursor-pointer transition-all ${
+      className={`relative overflow-hidden inline-flex items-center justify-center px-8 py-5 rounded-2xl font-display font-bold text-lg cursor-pointer transition-all ${
         primary 
-        ? "bg-brand-accent text-white hover:bg-orange-500 shadow-orange-200" 
+        ? "bg-brand-accent text-white hover:bg-orange-500" 
         : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50"
       } ${className}`}
     >
-      {children}
+      <motion.div
+        className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full"
+        animate={{
+          translateX: ["100%", "-100%"],
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "linear",
+          repeatDelay: 1
+        }}
+      />
+      <span className="relative z-10">{children}</span>
     </Component>
   );
 };
@@ -749,6 +766,12 @@ export default function App() {
                 img: "https://i.ibb.co/XZgjxXKB/Chat-GPT-Image-3-de-mai-de-2026-20-24-11.png"
               },
               { 
+                title: "Kit Escrita Guiada para Alunos", 
+                desc: "ALFABETO PONTILHADO ANIMADO para ajudar seus alunos a desenvolverem a coordenação e a formação das letras de forma simples e prática.", 
+                icon: <Pencil className="w-5 h-5" />,
+                img: "https://i.ibb.co/gLqFWrDt/Chat-GPT-Image-6-de-mai-de-2026-10-53-33.png"
+              },
+              { 
                 title: "Controle de Missões", 
                 desc: "Folha para acompanhar o progresso de cada aluno de forma lúdica.", 
                 icon: <ClipboardCheck className="w-5 h-5" />,
@@ -859,6 +882,7 @@ export default function App() {
                        "Kit 'Acabei, Professora!' (+100 Atividades)",
                        "+50 Atividades Extras",
                        "Planner de Aula Completo",
+                       "BÔNUS: Kit Escrita Guiada",
                        "BÔNUS: Bobbie Goods p/ colorir",
                        "Acesso Vitalício"
                      ].map((item, i) => (
@@ -909,6 +933,7 @@ export default function App() {
                   <div className="space-y-3 mb-10 flex-grow">
                      {[
                        "TUDO DO PLANO DE R$ 10",
+                       "Kit Escrita Guiada p/ Alunos",
                        "BÔNUS: Bobbie Goods p/ colorir",
                        "CERTIFICADOS de Motivação Escolar",
                        "GRUPO DE MATERIAIS no WhatsApp",
@@ -923,12 +948,12 @@ export default function App() {
                      ))}
                   </div>
 
-                  <a 
+                  <Button 
                     href="https://pay.cakto.com.br/n4a9iy3" 
-                    className="w-full text-lg py-5 rounded-xl font-display font-bold shadow-lg shadow-brand-primary/20 bg-brand-accent text-white hover:bg-orange-500 flex items-center justify-center transition-all"
+                    className="w-full text-xl py-7"
                   >
                      QUERO O ACESSO VIP POR R$ 19
-                  </a>
+                  </Button>
                   
                   <div className="mt-8 flex flex-col items-center gap-4">
                      <div className="flex gap-4 opacity-50 grayscale">
