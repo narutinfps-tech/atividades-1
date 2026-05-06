@@ -859,7 +859,7 @@ export default function App() {
                        "Kit 'Acabei, Professora!' (+100 Atividades)",
                        "+50 Atividades Extras",
                        "Planner de Aula Completo",
-                       "Painéis de Sala Decorativos",
+                       "BÔNUS: Bobbie Goods p/ colorir",
                        "Acesso Vitalício"
                      ].map((item, i) => (
                        <div key={i} className="flex items-center gap-3 text-sm text-slate-600">
@@ -909,6 +909,7 @@ export default function App() {
                   <div className="space-y-3 mb-10 flex-grow">
                      {[
                        "TUDO DO PLANO DE R$ 10",
+                       "BÔNUS: Bobbie Goods p/ colorir",
                        "CERTIFICADOS de Motivação Escolar",
                        "GRUPO DE MATERIAIS no WhatsApp",
                        "Certificado 'Aluno Protagonista'",
