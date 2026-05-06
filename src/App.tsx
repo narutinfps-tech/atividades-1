@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { 
   CheckCircle2, 
@@ -237,6 +237,17 @@ const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: stri
 // --- Main App ---
 
 export default function App() {
+  const [activeDot, setActiveDot] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / clientWidth);
+      setActiveDot(index);
+    }
+  };
+
   const scrollToCheckout = () => {
     const element = document.getElementById('checkout-section');
     if (element) {
@@ -983,6 +994,54 @@ export default function App() {
               Comunidade de Professoras
             </SectionTitle>
           </motion.div>
+
+          {/* Testimonial Image Carousel */}
+          <div className="max-w-5xl mx-auto mb-16 relative">
+            <div 
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide no-scrollbar"
+              style={{
+                msOverflowStyle: 'none',
+                scrollbarWidth: 'none'
+              }}
+            >
+              {[
+                "https://i.ibb.co/ycmLGrrf/04daa554-7a3d-41ab-9e0f-71bf036cc8d2.png",
+                "https://i.ibb.co/6RLLg0TQ/Chat-GPT-Image-6-de-mai-de-2026-11-16-34.png",
+                "https://i.ibb.co/fYhQt6Nj/Chat-GPT-Image-6-de-mai-de-2026-11-25-04.png",
+              ].map((img, i) => (
+                <motion.div 
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  className="min-w-[85vw] md:min-w-[420px] aspect-[3/4] rounded-3xl overflow-hidden shadow-xl snap-center flex-shrink-0"
+                >
+                  <img 
+                    src={img} 
+                    alt={`Feedback ${i + 1}`} 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Pagination Dots */}
+            <div className="flex justify-center gap-3 mt-2">
+              {[0, 1, 2].map((dot) => (
+                <motion.div 
+                  key={dot} 
+                  animate={{ 
+                    scale: activeDot === dot ? 1.5 : 1,
+                    backgroundColor: activeDot === dot ? "#3B82F6" : "#cbd5e1"
+                  }}
+                  className="w-2.5 h-2.5 rounded-full transition-colors" 
+                />
+              ))}
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
