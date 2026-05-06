@@ -32,46 +32,48 @@ const Button = ({ children, className = "", primary = true, onClick, href }: { c
     : "bg-white text-brand-primary border-2 border-brand-primary hover:bg-blue-50 shadow-lg"
   } ${className}`;
 
-  const motionProps = {
-    whileHover: { 
-      scale: 1.05, 
-      y: -5,
-      transition: { duration: 0.2 }
-    },
-    whileTap: { scale: 0.95 },
-  };
-
   const content = (
     <>
+      <span className="relative z-10">{children}</span>
       <motion.div
         className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent"
         initial={{ x: "-100%" }}
-        animate={{
-          x: ["100%", "-100%"],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "linear",
-          repeatDelay: 2
-        }}
+        animate={{ x: "100%" }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1 }}
       />
-      <span className="relative z-10">{children}</span>
     </>
   );
 
   if (href) {
+    if (href.startsWith('#')) {
+      return (
+        <motion.button
+          type="button"
+          whileHover={{ scale: 1.05, y: -5 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={(e) => {
+            e.preventDefault();
+            if (onClick) onClick();
+            else {
+              const id = href.replace('#', '');
+              const element = document.getElementById(id);
+              if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className={baseClasses}
+        >
+          {content}
+        </motion.button>
+      );
+    }
     return (
       <motion.a
         href={href}
+        whileHover={{ scale: 1.05, y: -5 }}
+        whileTap={{ scale: 0.95 }}
         className={baseClasses}
-        {...motionProps}
-        onClick={(e) => {
-          if (onClick) {
-            e.preventDefault();
-            onClick();
-          }
-        }}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {content}
       </motion.a>
@@ -81,14 +83,15 @@ const Button = ({ children, className = "", primary = true, onClick, href }: { c
   return (
     <motion.button
       type="button"
-      className={baseClasses}
-      {...motionProps}
+      whileHover={{ scale: 1.05, y: -5 }}
+      whileTap={{ scale: 0.95 }}
       onClick={(e) => {
         if (onClick) {
           e.preventDefault();
           onClick();
         }
       }}
+      className={baseClasses}
     >
       {content}
     </motion.button>
