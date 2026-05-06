@@ -244,8 +244,9 @@ export default function App() {
     if (scrollRef.current && scrollRef.current.children.length > 0) {
       const { scrollLeft } = scrollRef.current;
       const firstChild = scrollRef.current.children[0] as HTMLElement;
-      const itemWidth = firstChild.offsetWidth + 16; // 16 corresponds to gap-4
-      const index = Math.round(scrollLeft / itemWidth);
+      // Use clientWidth of the container for more reliable mobile indexing
+      const containerWidth = scrollRef.current.clientWidth;
+      const index = Math.round(scrollLeft / (firstChild.offsetWidth + 16));
       setActiveDot(Math.min(index, 2));
     }
   };
@@ -1018,7 +1019,7 @@ export default function App() {
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  className="min-w-[260px] md:min-w-[350px] aspect-[3/4] rounded-2xl overflow-hidden shadow-lg snap-center flex-shrink-0"
+                  className="min-w-[150px] md:min-w-[280px] aspect-[4/5] rounded-xl overflow-hidden shadow-md snap-center flex-shrink-0"
                 >
                   <img 
                     src={img} 
