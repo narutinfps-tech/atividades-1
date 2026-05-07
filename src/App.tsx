@@ -155,7 +155,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
 
 const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: string }) => (
   <section className="py-20 bg-slate-50 overflow-hidden border-y border-slate-100">
-    <div className="container mx-auto px-4 mb-10 text-center">
+    <div className="container mx-auto px-6 mb-10 text-center">
        {title && <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</h2>}
        {subtitle && <p className="text-slate-500">{subtitle}</p>}
     </div>
@@ -277,7 +277,7 @@ export default function App() {
       <section className="relative pt-20 pb-32 overflow-hidden bg-brand-yellow/30">
         <div className="absolute top-0 left-0 w-full h-full opacity-40 school-pattern pointer-events-none" />
         
-        <div className="container mx-auto px-4 relative z-10 flex flex-col items-center text-center">
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-brand-primary font-semibold text-sm mb-8 shadow-sm border border-blue-100">
             <Sparkles className="w-4 h-4" />
             <span>Kit Digital Exclusivo</span>
@@ -374,15 +374,14 @@ export default function App() {
 
       {/* 2. SEÇÃO DE IDENTIFICAÇÃO DA DOR */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 text-center">
+        <div className="container mx-auto px-6 text-center">
             <SectionTitle 
               subtitle="Toda professora do Ensino Fundamental 1 conhece esse ciclo desgastante."
             >
               Você já passou por isso em sala?
             </SectionTitle>
-          </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto text-left mt-12">
             <div className="space-y-6">
               <p className="text-lg text-slate-600 leading-relaxed">
                 Você prepara a atividade, começa a orientar a turma e, poucos minutos depois, um aluno levanta a mão e diz: <span className="italic font-medium text-brand-primary">“Professora, já terminei.”</span>
@@ -464,11 +463,12 @@ export default function App() {
               </motion.div>
             </div>
           </div>
+        </div>
       </section>
 
       {/* 3. SEÇÃO DA SOLUÇÃO */}
       <section className="py-24 bg-brand-blue/10 overflow-hidden">
-        <div className="container mx-auto px-4 mt-12">
+        <div className="container mx-auto px-6 mt-12">
             <SectionTitle>
               Uma pasta pronta para salvar sua rotina.
             </SectionTitle>
@@ -503,7 +503,7 @@ export default function App() {
 
       {/* 4. SEÇÃO “O QUE VEM NO KIT” */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           <SectionTitle>O que você recebe no Kit Acabei, Professora!</SectionTitle>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -586,7 +586,7 @@ export default function App() {
 
       {/* 7. SEÇÃO “COMO USAR” */}
       <section className="py-24 bg-brand-yellow/10 overflow-hidden">
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto px-6 mt-8">
             <SectionTitle subtitle="Implementação rápida que não exige esforço adicional.">
               Como usar em sala de aula?
             </SectionTitle>
@@ -623,7 +623,7 @@ export default function App() {
 
       {/* 8. SEÇÃO DE BÔNUS */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto px-6 mt-8">
             <SectionTitle subtitle="Presentes exclusivos para quem garantir o kit hoje.">
               Comprando hoje, você também recebe bônus especiais.
             </SectionTitle>
@@ -711,7 +711,7 @@ export default function App() {
       <section id="checkout-section" className="py-32 bg-brand-blue relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 school-pattern pointer-events-none" />
         
-        <div className="container mx-auto px-4 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-10 text-center">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
               Escolha o melhor plano para você
@@ -840,7 +840,7 @@ export default function App() {
 
       {/* 12. SEÇÃO DE DEPOIMENTOS */}
       <section className="py-24 bg-brand-mint/20 overflow-hidden">
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto px-6 mt-8">
             <SectionTitle subtitle="O que outras educadoras estão dizendo.">
               Comunidade de Professoras
             </SectionTitle>
@@ -889,7 +889,7 @@ export default function App() {
 
       {/* 11. SEÇÃO DE GARANTIA */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto px-6 mt-8">
           <motion.div 
             whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)" }}
             className="max-w-4xl mx-auto rounded-3xl bg-slate-50 p-12 flex flex-col md:flex-row gap-12 items-center text-center md:text-left border border-slate-100 transition-all"
@@ -918,7 +918,7 @@ export default function App() {
 
       {/* 13. SEÇÃO DE FAQ */}
       <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 mt-8">
+        <div className="container mx-auto px-6 mt-8">
           <div className="max-w-3xl mx-auto">
             <SectionTitle>Dúvidas frequentes</SectionTitle>
             <div className="mt-12">
@@ -939,7 +939,7 @@ export default function App() {
 
       {/* 14. SEÇÃO FINAL DE CTA */}
       <section className="py-32 bg-brand-yellow overflow-hidden relative text-center">
-        <div className="container mx-auto px-4 relative z-10 mt-8">
+        <div className="container mx-auto px-6 relative z-10 mt-8">
            <div>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8 max-w-4xl mx-auto leading-tight">
                 Na próxima vez que um aluno disser “professora, já terminei”, você não vai precisar improvisar.
@@ -961,7 +961,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 bg-slate-900 text-slate-500 text-sm text-center border-t border-slate-800">
-         <div className="container mx-auto px-4">
+         <div className="container mx-auto px-6">
             <p className="mb-4">© {new Date().getFullYear()} Acabei, Professora! • Todos os direitos reservados.</p>
             <p className="max-w-2xl mx-auto">
               Ao adquirir o kit, você concorda que o uso é individual e intransferível. Pirataria é crime. Valorize o trabalho de quem cria materiais educativos de qualidade.
