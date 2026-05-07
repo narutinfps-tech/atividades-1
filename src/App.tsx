@@ -584,40 +584,6 @@ export default function App() {
 
 
 
-      {/* 6. SEÇÃO “PARA QUEM É” */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="w-full">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 leading-tight text-center">
-                  Esse kit é ideal para você se…
-                </h2>
-               <div className="space-y-4">
-                 {[
-                   "Você é professora da Educação Infantil ou Fundamental 1.",
-                   "Você tem alunos que terminam as atividades muito rápido.",
-                   "Você quer evitar bagunça e conversas fora de hora.",
-                   "Você precisa de atividades extras prontas e organizadas.",
-                   "Você quer economizar seu tempo de planejamento semanal.",
-                   "Você gosta de materiais bonitos, lúdicos e fáceis de usar.",
-                   "Você quer ter uma pasta pronta para salvar seu dia."
-                 ].map((item, i) => (
-                   <motion.div 
-                    key={i} 
-                    whileHover={{ x: 8, scale: 1.02, backgroundColor: "rgba(187, 247, 208, 0.7)" }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex gap-3 p-4 rounded-2xl bg-brand-mint/30 border border-brand-mint transition-colors cursor-default"
-                   >
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500 shrink-0" />
-                      <span className="text-slate-700 font-medium">{item}</span>
-                   </motion.div>
-                 ))}
-               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* 7. SEÇÃO “COMO USAR” */}
       <section className="py-24 bg-brand-yellow/10 overflow-hidden">
         <div className="container mx-auto px-4 mt-8">
