@@ -153,6 +153,81 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
   );
 };
 
+const PURCHASES = [
+  { name: "Mariana S.", city: "São Paulo, SP" },
+  { name: "Ana Paula K.", city: "Curitiba, PR" },
+  { name: "Juliana M.", city: "Belo Horizonte, MG" },
+  { name: "Carla R.", city: "Rio de Janeiro, RJ" },
+  { name: "Beatriz L.", city: "Fortaleza, CE" },
+  { name: "Fernanda O.", city: "Porto Alegre, RS" },
+  { name: "Gisela W.", city: "Joinville, SC" },
+  { name: "Luciana T.", city: "Brasília, DF" },
+  { name: "Renata P.", city: "Salvador, BA" },
+  { name: "Sandra B.", city: "Campinas, SP" },
+  { name: "Patrícia D.", city: "Recife, PE" }
+];
+
+const PurchaseNotification = () => {
+  const [currentPurchase, setCurrentPurchase] = React.useState(0);
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    // Function to show and then hide after 3 seconds
+    const triggerNotification = () => {
+      setIsVisible(true);
+      setTimeout(() => {
+        setIsVisible(false);
+        // Prepare next purchase for next cycle
+        setTimeout(() => {
+          setCurrentPurchase((prev) => (prev + 1) % PURCHASES.length);
+        }, 500); // Small delay after hiding before switching data
+      }, 3000);
+    };
+
+    // Initial trigger after 5 seconds
+    const initialTimer = setTimeout(triggerNotification, 5000);
+
+    // Regular interval every 10 seconds starting after the first one
+    const interval = setInterval(triggerNotification, 10000);
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(interval);
+    };
+  }, []);
+
+  const purchase = PURCHASES[currentPurchase];
+
+  return (
+    <motion.div
+      initial={{ x: -100, opacity: 0 }}
+      animate={{ 
+        x: isVisible ? 0 : -100, 
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? "auto" : "none"
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+      className="fixed bottom-6 left-6 z-[100] bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4 border border-brand-primary/10 max-w-[280px]"
+    >
+      <div className="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+        <Check className="w-6 h-6 text-brand-primary" />
+      </div>
+      <div>
+        <p className="text-sm font-bold text-slate-900 leading-tight">
+          {purchase.name}
+        </p>
+        <p className="text-xs text-slate-500 mb-1">
+          Acabou de adquirir o Plano Diamante em {purchase.city}
+        </p>
+        <div className="flex items-center gap-1">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[10px] font-bold text-emerald-600 uppercase">Compra verificada</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const ActivityCarousel = ({ title, subtitle }: { title?: string, subtitle?: string }) => (
   <section className="py-20 bg-slate-50 overflow-hidden border-y border-slate-100">
     <div className="container mx-auto px-6 mb-10 text-center">
@@ -273,6 +348,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen selection:bg-brand-primary selection:text-white bg-white">
+      <PurchaseNotification />
       {/* 1. SEÇÃO HERO */}
       <section className="relative pt-20 pb-32 overflow-hidden bg-brand-yellow/30">
         <div className="absolute top-0 left-0 w-full h-full opacity-40 school-pattern pointer-events-none" />
