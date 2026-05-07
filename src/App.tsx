@@ -180,15 +180,15 @@ const PurchaseNotification = () => {
         // Prepare next purchase for next cycle
         setTimeout(() => {
           setCurrentPurchase((prev) => (prev + 1) % PURCHASES.length);
-        }, 500); // Small delay after hiding before switching data
+        }, 500); 
       }, 3000);
     };
 
-    // Initial trigger after 5 seconds
-    const initialTimer = setTimeout(triggerNotification, 5000);
+    // Initial trigger after 12 seconds
+    const initialTimer = setTimeout(triggerNotification, 12000);
 
-    // Regular interval every 10 seconds starting after the first one
-    const interval = setInterval(triggerNotification, 10000);
+    // Regular interval every 12 seconds
+    const interval = setInterval(triggerNotification, 12000);
 
     return () => {
       clearTimeout(initialTimer);
@@ -200,28 +200,28 @@ const PurchaseNotification = () => {
 
   return (
     <motion.div
-      initial={{ x: -100, opacity: 0 }}
+      initial={{ x: 100, opacity: 0 }}
       animate={{ 
-        x: isVisible ? 0 : -100, 
+        x: isVisible ? 0 : 100, 
         opacity: isVisible ? 1 : 0,
         pointerEvents: isVisible ? "auto" : "none"
       }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className="fixed bottom-6 left-6 z-[100] bg-white rounded-2xl shadow-2xl p-4 flex items-center gap-4 border border-brand-primary/10 max-w-[280px]"
+      className="fixed top-4 right-4 z-[100] bg-white rounded-xl shadow-xl p-3 flex items-center gap-3 border border-brand-primary/10 max-w-[240px]"
     >
-      <div className="w-12 h-12 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
-        <Check className="w-6 h-6 text-brand-primary" />
+      <div className="w-8 h-8 rounded-full bg-brand-primary/10 flex items-center justify-center shrink-0">
+        <Check className="w-4 h-4 text-brand-primary" />
       </div>
       <div>
-        <p className="text-sm font-bold text-slate-900 leading-tight">
+        <p className="text-xs font-bold text-slate-900 leading-tight">
           {purchase.name}
         </p>
-        <p className="text-xs text-slate-500 mb-1">
-          Acabou de adquirir o Plano Diamante em {purchase.city}
+        <p className="text-[10px] text-slate-500 leading-tight mb-0.5">
+          Comprou o Plano Diamante em {purchase.city}
         </p>
         <div className="flex items-center gap-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-[10px] font-bold text-emerald-600 uppercase">Compra verificada</span>
+          <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-[8px] font-bold text-emerald-600 uppercase tracking-wider">Verificado</span>
         </div>
       </div>
     </motion.div>
